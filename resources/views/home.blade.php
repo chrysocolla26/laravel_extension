@@ -127,8 +127,7 @@
 
     <!-- using online scripts -->
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('js/popper.min.js')}}" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
     <!-- using local scripts -->
