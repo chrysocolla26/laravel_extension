@@ -117,7 +117,7 @@
                     </thead>
                 </table>
 
-                <table class="table table-data"></table>
+                <table class="table-data" border="1" width="60%"></table>
 
             </div>
         </main>
@@ -153,11 +153,11 @@
             // addTitle("base_aso", "BASE-ASO");
             // addTitle("bbs_jwc", "BBS JWC");
             // addTitle("bcld", "BCL&D");
-            // addTitle("Binus-Bandung", "Binus Bandung");
+            // addTitle("binus_bandung", "Binus Bandung");
             // addTitle("Binus-Bekasi", "Binus Bekasi");
             // addTitle("Binus-Center", "Binus Center");
             // addTitle("Binus-Creates", "Binus Creates");
-            addTitle("binus_fx_bnsd", "Binus FX BNSD");
+            // addTitle("binus_fx_bnsd", "Binus FX BNSD");
             // addTitle("Binus-Malang", "Binus Malang");
             // addTitle("Binus-School-Bekasi", "Binus School-Bekasi");
             // addTitle("Binus-School-Serpong", "Binus School-Serpong");
@@ -172,7 +172,7 @@
             // addTitle("Marketing", "Marketing");
             // addTitle("PJJ-Palembang", "PJJ Palembang");
             // addTitle("PJJ-Semarang", "PJJ Semarang");
-            // addTitle("Univ", "Univ");
+            addTitle("univ", "Univ");
             // addTitle("Video-Conference-Meeting-Room", "Video Conference Meeting Room");
         });
     </script>
