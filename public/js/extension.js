@@ -25,11 +25,12 @@ function addExt(ref){
     });
 }
 
+
+
 function showExt(data){
     var strHTML = "";
     var rowspan = 1;
     var unitIdx = -1;
-    var rowspan = 1;
 
     $(".table-data").html("");
 
@@ -64,6 +65,7 @@ function showExt(data){
     		strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Ext+'</td></tr>';
     	}
     }
+
 
     strHTML += '</tbody>';
 	$(".table-data").append(strHTML);
