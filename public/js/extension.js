@@ -25,22 +25,37 @@ function addExt(ref){
     });
 }
 
+
+
 function showExt(data){
     var strHTML = "";
     var rowspan = 1;
-    var dataIdx = [];
+
 
     $(".table-data").html("");
 
     strHTML = '<thead><tr scope="col" align="center"><th>'+data[0].Title+'</th></tr></thead><tbody>';
 
     for(var i=0;i<data.length;i++){
-    	if(data[i].Ext == data[i+1].Ext)
+    	if(data[i].Ext == data[i+1].Ext){
+    	    rowspan++;
+        }else {
+    	    break;
+        }
     }
 
-    for(var i=0;i<data.length;i++){
-    	strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Ext+'</td></tr>';
+
+
+    if(rowspan>1){
+        for(var i=0;i<data.length;i++){
+            strHTML += '<tr><td>'+data[i].Name+'</td><td rowspan="\'+rowspan+\'" >'+data[i].Ext+'</td></tr>';
+        }
+    }else{
+        for(var i=0;i<data.length;i++){
+            strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Ext+'</td></tr>';
+        }
     }
+
 
     strHTML += '</tbody>';
 	$(".table-data").append(strHTML);
