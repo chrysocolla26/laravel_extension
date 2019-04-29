@@ -1,23 +1,47 @@
 function addTitle(ref, title){
 	var strHTML = "";
-	strHTML = "<li class='sidebar-dropdown' id='"+ref+"'><a href='#"+ref+"'><span class='menu-text'>"+title+"</span></a></li>";
+	strHTML = "<li class='sidebar-dropdown' id='"+ref+"'><a href='#' onclick=addExt('"+ref+"')><span class='menu-text'>"+title+"</span></a></li>";
 	$(".sidebar-menu ul").append(strHTML);
 }
 
-function addExt(title, name, ext, col){
-	var strHTML = "";
-	if(title != ""){
-		strHTML = '<thead><tr scope="col" align="center"><th colspan="'+col+'">'+title+'</th></tr></thead>';
-	}
-	strHTML += '<tbody><tr><td>'+name+'</td><td>'+ext+'</td></tr></tbody>';
-	$(".table").append(strHTML);
+function addExt(ref){
+	var data = [];
+	$.ajax({
+        type: "GET",
+        url: "/data",
+        dataType: "json",
+        data: {ref:ref},
+        success: function(response){
+        	data = response;
+            console.log(data);
+            showExt(data);
+        },
+        error: function(e){
+        	console.info("error");
+        },
+        done: function(e){
+        	console.info("DONE");
+        }
+    });
 }
 
-function showExt(title){
-	$(".table").html("");
-	if(title == "ALC"){
-		addExt(title, "Akademis", "7097", 2);
-		addExt("", "Security", "7098", 0);
-		addExt("", "Lab Foodtech", "7099", 0);
-	}
+function showExt(data){
+    var strHTML = "";
+    var rowspan = 1;
+    var dataIdx = [];
+
+    $(".table-data").html("");
+
+    strHTML = '<thead><tr scope="col" align="center"><th>'+data[0].Title+'</th></tr></thead><tbody>';
+
+    for(var i=0;i<data.length;i++){
+    	if(data[i].Ext == data[i+1].Ext)
+    }
+
+    for(var i=0;i<data.length;i++){
+    	strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Ext+'</td></tr>';
+    }
+
+    strHTML += '</tbody>';
+	$(".table-data").append(strHTML);
 }

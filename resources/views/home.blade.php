@@ -117,7 +117,7 @@
                     </thead>
                 </table>
 
-                <table class="table"></table>
+                <table class="table table-data"></table>
 
             </div>
         </main>
@@ -148,32 +148,32 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            addTitle("ALC", "ALC");
-            addTitle("Alam-Sutera-Main-Campus", "Alam Sutera Main Campus");
-            addTitle("BASE-ASO", "BASE-ASO");
-            addTitle("BBS-JWC", "BBS JWC");
-            addTitle("BC&LD", "BC&LD");
-            addTitle("Binus-Bandung", "Binus Bandung");
-            addTitle("Binus-Bekasi", "Binus Bekasi");
-            addTitle("Binus-Center", "Binus Center");
-            addTitle("Binus-Creates", "Binus Creates");
-            addTitle("Binus-FX-BNSD", "Binus FX BNSD");
-            addTitle("Binus-Malang", "Binus Malang");
-            addTitle("Binus-School-Bekasi", "Binus School-Bekasi");
-            addTitle("Binus-School-Serpong", "Binus School-Serpong");
-            addTitle("Binus-School-Simprug", "Binus School-Simprug");
-            addTitle("Binus-Square", "Binus Square");
-            addTitle("CSM", "CSM");
-            addTitle("Finance", "Finance");
-            addTitle("GA", "GA");
-            addTitle("Human-Capital", "Human Capital");
-            addTitle("IDO", "IDO");
-            addTitle("IT", "IT");
-            addTitle("Marketing", "Marketing");
-            addTitle("PJJ-Palembang", "PJJ Palembang");
-            addTitle("PJJ-Semarang", "PJJ Semarang");
-            addTitle("Univ", "Univ");
-            addTitle("Video-Conference-Meeting-Room", "Video Conference Meeting Room");
+            // addTitle("alc", "ALC");
+            // addTitle("alam_sutera_main_campus", "Alam Sutera Main Campus");
+            // addTitle("base_aso", "BASE-ASO");
+            // addTitle("bbs_jwc", "BBS JWC");
+            // addTitle("bcld", "BCL&D");
+            // addTitle("Binus-Bandung", "Binus Bandung");
+            // addTitle("Binus-Bekasi", "Binus Bekasi");
+            // addTitle("Binus-Center", "Binus Center");
+            // addTitle("Binus-Creates", "Binus Creates");
+            addTitle("binus_fx_bnsd", "Binus FX BNSD");
+            // addTitle("Binus-Malang", "Binus Malang");
+            // addTitle("Binus-School-Bekasi", "Binus School-Bekasi");
+            // addTitle("Binus-School-Serpong", "Binus School-Serpong");
+            // addTitle("Binus-School-Simprug", "Binus School-Simprug");
+            // addTitle("Binus-Square", "Binus Square");
+            // addTitle("CSM", "CSM");
+            // addTitle("Finance", "Finance");
+            // addTitle("GA", "GA");
+            // addTitle("Human-Capital", "Human Capital");
+            // addTitle("IDO", "IDO");
+            // addTitle("IT", "IT");
+            // addTitle("Marketing", "Marketing");
+            // addTitle("PJJ-Palembang", "PJJ Palembang");
+            // addTitle("PJJ-Semarang", "PJJ Semarang");
+            // addTitle("Univ", "Univ");
+            // addTitle("Video-Conference-Meeting-Room", "Video Conference Meeting Room");
         });
     </script>
     <script src="{{asset('js/main.js')}}"></script>
