@@ -48,7 +48,6 @@ function showTableExt(data){
     var strHTML = "";
     var rowspan = 1;
     var unitIdx = -1;
-    var rowspan = 1;
 
     $(".syahdanImage").hide();
     $(".table-info").hide();
@@ -88,6 +87,7 @@ function showTableExt(data){
     		strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Ext+'</td></tr>';
     	}
     }
+
 
     strHTML += '</tbody>';
 	$(".table-data").append(strHTML);
