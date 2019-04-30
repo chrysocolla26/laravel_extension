@@ -4,11 +4,10 @@ function getListTabExtension(){
         url: "/getListTab",
         dataType: "json",
         success: function(response){
-        	console.log(response);
             showListTab(response);
         },
         error: function(e){
-        	console.info("error");
+        	location.reload();
         }
     });
 }
@@ -23,7 +22,7 @@ function getListExtension(ref){
             showTableExt(response);
         },
         error: function(e){
-        	console.info("error");
+        	location.reload();
         }
     });
 }
