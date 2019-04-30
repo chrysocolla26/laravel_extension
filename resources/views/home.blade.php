@@ -63,10 +63,10 @@
                     </div>
                 </div>
                 <!-- sidebar-menu  -->
-                <div class=" sidebar-item sidebar-menu">
+                <div class="sidebar-item sidebar-menu">
                     <ul>
                         <li class="sidebar-dropdown">
-                            <a href="#Info">
+                            <a href="javascript:;" onclick="showInfo()">
                                 <span class="menu-text">Info</span>
                             </a>
                         </li>
@@ -82,24 +82,14 @@
         <main class="page-content pt-2">
             <div id="toggle-sidebar" onclick="rotateImg();" href="#"><img id="arrowImg" src="img/prev.png"></div>
             <div id="overlay" class="overlay"></div>
-            <div class="container-fluid p-5">
+            <div class="container-fluid p-5 syahdanImage">
                 <div class="row">
-                   <!--  <div class="form-group col-md-12">
-                        <h2>Sidebar template</h2>
-                        <p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
-                    </div>
-                    <div class="form-group col-md-12">
-                        
-                        <a id="pin-sidebar" class="btn btn-dark" href="#">
-                            <span>Pin Sidebar</span>
-                        </a>
-                    </div> -->
                     <img id="syahdanImage" src="img/syahdan.jpg" class="mx-auto d-block">
                 </div>
             </div>
             <div class="table-ext container-fluid p-5">
 
-                <table class="table">
+                <table class="table table-info">
                     <thead>
                         <tr>
                             <td>
@@ -148,32 +138,7 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            // addTitle("alc", "ALC");
-            // addTitle("alam_sutera_main_campus", "Alam Sutera Main Campus");
-            // addTitle("base_aso", "BASE-ASO");
-            // addTitle("bbs_jwc", "BBS JWC");
-            // addTitle("bcld", "BCL&D");
-            // addTitle("binus_bandung", "Binus Bandung");
-            // addTitle("Binus-Bekasi", "Binus Bekasi");
-            // addTitle("Binus-Center", "Binus Center");
-            // addTitle("Binus-Creates", "Binus Creates");
-            // addTitle("binus_fx_bnsd", "Binus FX BNSD");
-            // addTitle("Binus-Malang", "Binus Malang");
-            // addTitle("Binus-School-Bekasi", "Binus School-Bekasi");
-            // addTitle("Binus-School-Serpong", "Binus School-Serpong");
-            // addTitle("Binus-School-Simprug", "Binus School-Simprug");
-            // addTitle("Binus-Square", "Binus Square");
-            // addTitle("CSM", "CSM");
-            // addTitle("Finance", "Finance");
-            // addTitle("GA", "GA");
-            // addTitle("Human-Capital", "Human Capital");
-            // addTitle("IDO", "IDO");
-            // addTitle("IT", "IT");
-            // addTitle("Marketing", "Marketing");
-            // addTitle("PJJ-Palembang", "PJJ Palembang");
-            // addTitle("PJJ-Semarang", "PJJ Semarang");
-            addTitle("univ", "Univ");
-            // addTitle("Video-Conference-Meeting-Room", "Video Conference Meeting Room");
+            getListTabExtension();
         });
     </script>
     <script src="{{asset('js/main.js')}}"></script>

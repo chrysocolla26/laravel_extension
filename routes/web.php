@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/data', 'ExtensionController@getData');
+Route::get('/getListTab', 'ExtensionController@getDataListTab');
+Route::get('/getListExtension', 'ExtensionController@getDataListExtension');
