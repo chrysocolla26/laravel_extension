@@ -87,7 +87,7 @@
                     <img id="syahdanImage" src="img/syahdan.jpg" class="mx-auto d-block">
                 </div>
             </div>
-            <div class="table-ext container-fluid p-5">
+            <div class="table-ext container-fluid p-5" align="center">
 
                 <table class="table table-info">
                     <thead>
@@ -107,7 +107,7 @@
                     </thead>
                 </table>
 
-                <table class="table-data" border="1" width="60%"></table>
+                <table class="table-data table-striped" border="1" width="60%"></table>
 
             </div>
         </main>

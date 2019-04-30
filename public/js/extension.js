@@ -53,19 +53,19 @@ function showTableExt(data){
     $(".table-info").hide();
     $(".table-data").html("");
 
-    strHTML = '<thead><tr scope="col" align="center"><th colspan="3">'+data[0].Title+'</th></tr></thead><tbody>';
+    strHTML = '<thead><tr scope="col" align="center"><th colspan="4"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
 
     if(data[0].Unit != "")
-    	strHTML += '<thead><tr scope="col" align="center"><th colspan="3">'+data[0].Unit+'</th></tr></thead>';
+    	strHTML += '<thead><tr scope="col" align="center"><th colspan="4">'+data[0].Unit+'</th></tr></thead>';
     if(data[0].Group != "")
-    	strHTML += '<thead><tr scope="col" align="center"><th colspan="3">'+data[0].Group+'</th></tr></thead>';
+    	strHTML += '<thead><tr scope="col" align="center"><th colspan="4"><h5>'+data[0].Group+'</h5></th></tr></thead>';
 
     for(var i=0;i<data.length;i++){
     	if(i>0){
     		if(data[i].Unit != data[i-1].Unit && data[i].Unit != "")
-    			strHTML += '<thead><tr scope="col" align="center"><th colspan="3">'+data[i].Unit+'</th></tr></thead>';
+    			strHTML += '<thead><tr scope="col" align="center"><th colspan="4">'+data[i].Unit+'</th></tr></thead>';
     		if(data[i].Group != data[i-1].Group && data[i].Group != "")
-    			strHTML += '<thead><tr scope="col" align="center"><th colspan="3">'+data[i].Group+'</th></tr></thead>';
+    			strHTML += '<thead><tr scope="col" align="center"><th colspan="4"><h5>'+data[i].Group+'</h5></th></tr></thead>';
     	}
     	for(var j=i+1;j<data.length;j++){
     		if(data[i].Ext == data[j].Ext)
@@ -76,15 +76,15 @@ function showTableExt(data){
     	if(rowspan > 1){
     		for(var k=i;k<i+rowspan;k++){
     			if(k==i){
-    				strHTML += '<tr><td>'+data[k].Name+'</td><td rowspan="'+rowspan+'">'+data[i].Ext+'</td></tr>';
+    				strHTML += '<tr><td>'+data[k].Name+'</td><td>'+data[k].Position+'</td><td rowspan="'+rowspan+'">'+data[i].Ext+'</td></tr>';
 	    		}else{
-	    			strHTML += '<tr><td>'+data[k].Name+'</td></tr>';
+	    			strHTML += '<tr><td>'+data[k].Name+'</td><td>'+data[k].Position+'</td></tr>';
 	    		}
     		}
     		i = i+rowspan-1;
     		rowspan = 1;
     	}else{
-    		strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Ext+'</td></tr>';
+    		strHTML += '<tr><td>'+data[i].Name+'</td><td>'+data[i].Position+'</td><td>'+data[i].Ext+'</td></tr>';
     	}
     }
 

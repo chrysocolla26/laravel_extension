@@ -10,6 +10,7 @@ class ExtensionController extends Controller
 	public function getDataListTab(){
 		$data = [];
 		$data = DB::select('select * from list_tab');
+		// $data = DB::select('select * from list_tab order by TableName');
 
 		return $data;
 	}
