@@ -52,12 +52,12 @@ function showTableExt(data){
     $(".table-info").hide();
     $(".table-data").html("");
 
-    strHTML = '<thead><tr scope="col" align="center" valign="middle"><th colspan="4"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
+    strHTML = '<thead><tr scope="col" align="center"><th colspan="4"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
 
     if(data[0].Unit != "")
-    	strHTML += '<thead><tr scope="col" align="center" valign="middle"><th colspan="4">'+data[0].Unit+'</th></tr></thead>';
+    	strHTML += '<thead><tr scope="col" align="center"><th colspan="4">'+data[0].Unit+'</th></tr></thead>';
     if(data[0].Group != "")
-    	strHTML += '<thead><tr scope="col" align="center" valign="middle"><th colspan="4"><h5>'+data[0].Group+'</h5></th></tr></thead>';
+    	strHTML += '<thead><tr scope="col" align="center"><th colspan="4"><h5>'+data[0].Group+'</h5></th></tr></thead>';
 
     for(var i=0;i<data.length;i++){
     	if(i>0){
