@@ -526,3 +526,8 @@ body {
   margin-bottom: -70px;
   margin-top: -30px;
 }*/
+
+/* Table CSS*/
+.table-data tr td, tr th{
+  padding: 5px;
+}
