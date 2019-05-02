@@ -18,7 +18,7 @@ class ExtensionController extends Controller
     	$data = [];
     	$ref = $_GET['ref'];
     	// $data = DB::select('select * from '.$ref.'');
-    	$data = DB::select('select * from '.$ref.' order by Unit ASC');
+    	$data = DB::select('select * from '.$ref.' order by Position ASC');
     	// $data = DB::select('select * from '.$ref.' order by `Group` DESC');
 
     	return $data;
