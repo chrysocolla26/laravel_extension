@@ -23,6 +23,19 @@
     <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.ico')}}" />
 
     <script type="text/javascript" src="{{asset('js/extension.js')}}"></script>
+
+    <!-- using online scripts -->
+    <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
+    <script src="{{asset('js/jquery/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+
+    <script src="{{asset('dist/js/bootstrap.min.js')}}"></script>
+
+    <!-- using local scripts -->
+    <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
 </head>
 
 <body>
@@ -112,21 +125,28 @@
             </div>
         </main>
         <!-- page-content" -->
+        <div class="modal fade" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- page-wrapper -->
+
 </body>
 </html>
-
-<!-- using online scripts -->
-<script src="{{asset('js/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
-<script src="{{asset('js/jquery/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-
-<!-- using local scripts -->
-<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
 
 <script type="text/javascript">
     function rotateImg(){
