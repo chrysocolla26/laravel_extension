@@ -48,7 +48,7 @@ function showTableExt(data){
     var strHTML = "";
     var rowspan = 1;
     var unitIdx = -1;
-    var colspan = 1;
+    var colspan = 2;
     var chkUnit = false;
     var chkDID = false;
     var chkPost = false;
@@ -56,12 +56,9 @@ function showTableExt(data){
     var chkFloor = false;
     var chkTower = false;
 
-
     $(".syahdanImage").hide();
     $(".table-info").hide();
     $(".table-data").html("");
-
-
 
     for(var i=0;i<data.length;i++) {
         if (data[i].Unit != "")
@@ -143,7 +140,7 @@ function showTableExt(data){
                     strHTML += '<td>'+data[k].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[k].Tower+'</td>';
-                strHTML += '<td style="border: none; border-right: solid 1px #ffffff; background: #ffffff;"><button>edit</button></td>';
+                strHTML += '<td><a onclick=alertLoudy()><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
     		}
     		i = i+rowspan-1;
@@ -163,7 +160,7 @@ function showTableExt(data){
                 strHTML += '<td>'+data[i].Floor+'</td>';
             if(chkTower)
                 strHTML += '<td>'+data[i].Tower+'</td>';
-            strHTML += '<td style="border: none; border-right: solid 1px #ffffff; background: #ffffff;"><button>edit</button></td>';
+            strHTML += '<td><a onclick=alertLoudy()><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
             strHTML += '</tr>';
     	}
     }
@@ -171,4 +168,8 @@ function showTableExt(data){
 
     strHTML += '</tbody>';
 	$(".table-data").append(strHTML);
+}
+
+function alertLoudy(){
+    alert('loudy ganteng');
 }
