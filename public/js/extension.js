@@ -229,12 +229,12 @@ function searchExtension(evt){
         data: {name:name},
         success: function(response){
             console.log(response);
-            showSearchExtesnsion(response.data);
+            showSearchExtension(response.data);
         },
     });
 }
 
-function showSearchExtesnsion(data) {
+function showSearchExtension(data) {
     $(".syahdanImage").hide();
     $(".table-info").hide();
     $(".table-data").html("");
