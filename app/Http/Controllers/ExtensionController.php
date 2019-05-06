@@ -38,4 +38,14 @@ class ExtensionController extends Controller
         ]);
     }
 
+    public function searchExtension(){
+	    $name = $_GET['name'];
+
+	    $data = DB::select('select * from sys.extension where name = '.$name);
+
+	    return response([
+	        'data' => $data
+        ]);
+    }
+
 }

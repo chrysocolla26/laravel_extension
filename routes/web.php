@@ -17,3 +17,4 @@ Route::get('/', function () {
 Route::get('/getListTab', 'ExtensionController@getDataListTab');
 Route::get('/getListExtension', 'ExtensionController@getDataListExtension');
 Route::get('/deleteExt','ExtensionController@deleteRow');
+Route::get('/showSearch','ExtensionController@searchExtension');

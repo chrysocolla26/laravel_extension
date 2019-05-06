@@ -182,3 +182,22 @@ function deleteRow(id, table){
         }
     });
 }
+
+function searchExtension(name){
+    $.ajax({
+        type: "GET",
+        url: "/showSearch",
+        dataType: "json",
+        data: {name:name},
+        success: function(response){
+            showListExtension(response.data)
+        },
+        error: function(e){
+
+        }
+    });
+}
+
+function showSearchExtesnsion(data, table){
+
+}

@@ -53,8 +53,8 @@
                 <div class="sidebar-item sidebar-search">
                     <div>
                         <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
-                            <div class="input-group-append">
+                            <input type="text" class="form-control search-menu" placeholder="Search..." >
+                            <div class="input-group-append" onclick="searchExtension()">
                                 <span class="input-group-text">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </span>
@@ -108,6 +108,9 @@
                 </table>
 
                 <table class="table-data table-bordered table-striped" border="1" width="80%"></table>
+
+                <div class="table-search"></div>
+
 
             </div>
         </main>
