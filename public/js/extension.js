@@ -239,6 +239,7 @@ function showSearchExtesnsion(data) {
     $(".table-info").hide();
     $(".table-data").html("");
     $(".table-search").html("");
+
     var strHTML = '';
     var rowspan = 1;
     var colspan = 2;
@@ -248,15 +249,18 @@ function showSearchExtesnsion(data) {
     var chkPhone = false;
     var chkFloor = false;
     var chkTower = false;
+
     for (var x = 0; x < data.length; x++) {
+
         strHTML += '<table class="table-data table-bordered table-striped" border="1" width="80%">';
 
-        if(x==0)
-            strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h2>' + data[0].Title + '</h2></th></tr></thead><tbody>';
+        // if (x == 0)
+        //     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[0].Title + '</h1></th></tr></thead><tbody>';
+        //
+        // if (x > 0)
+        //     if (data[x].Title != data[x - 1].Title)
+        //         strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[x].Title + '</h1></th></tr></thead><tbody>';
 
-        if(x>0)
-            if(data[x].Title != data[x-1].Title)
-                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h2>' + data[x].Title + '</h2></th></tr></thead><tbody>';
 
         for(var i=0;i<data.length;i++) {
             if (data[i].Unit != "")
@@ -285,31 +289,49 @@ function showSearchExtesnsion(data) {
         if(chkTower)
             colspan++;
 
-        strHTML += '<thead><tr align="center">';
-        strHTML += '<th>Name</th>';
 
-        if(chkPost)
-            strHTML += '<th>Position</th>';
 
-        strHTML += '<th>Extension</th>';
 
-        if(chkDID)
-            strHTML += '<th>DID</th>';
-        if(chkPhone)
-            strHTML += '<th>Phone</th>';
-        if(chkFloor)
-            strHTML += '<th>Floor</th>';
-        if(chkTower)
-            strHTML += '<th>Tower</th>';
-        strHTML += '</tr></thead>';
+
+
 
         for(var i=0;i<data.length;i++){
+
+            if(i==0){
+
+                if(data[i].Title == data[0].Title && data[i].Title != "")
+                    // strHTML += '<tr ><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h2></h2></th></tr>';
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title + '</h1></th></tr></thead><tbody>';
+            }
+
             if(i>0){
+
+                if(data[i].Title != data[i-1].Title && data[i].Title != "")
+
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title +'</h1></th></tr></thead><tbody>';
                 if(data[i].Unit != data[i-1].Unit && data[i].Unit != "")
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="'+colspan+'">'+data[i].Unit+'</th></tr></thead>';
                 if(data[i].Group != data[i-1].Group && data[i].Group != "")
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="'+colspan+'"><h5>'+data[i].Group+'</h5></th></tr></thead>';
             }
+
+            strHTML += '<thead><tr align="center">';
+            strHTML += '<th>Name</th>';
+
+            if(chkPost)
+                strHTML += '<th>Position</th>';
+
+            strHTML += '<th>Extension</th>';
+
+            if(chkDID)
+                strHTML += '<th>DID</th>';
+            if(chkPhone)
+                strHTML += '<th>Phone</th>';
+            if(chkFloor)
+                strHTML += '<th>Floor</th>';
+            if(chkTower)
+                strHTML += '<th>Tower</th>';
+            strHTML += '</tr></thead>';
 
             for(var j=i+1;j<data.length;j++){
                 if(data[i].Ext == data[j].Ext)
@@ -338,6 +360,7 @@ function showSearchExtesnsion(data) {
                         strHTML += '<td>'+data[k].Tower+'</td>';
                     strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                     strHTML += '</tr>';
+                    strHTML += '<tr><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h1></h1></th></tr>';
                 }
                 i = i+rowspan-1;
                 rowspan = 1;
@@ -358,11 +381,18 @@ function showSearchExtesnsion(data) {
                     strHTML += '<td>'+data[i].Tower+'</td>';
                 strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
+                strHTML += '<tr><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h1></h1></th></tr>';
+
             }
         }
+
         strHTML += '</tbody>';
+
         strHTML += '</table>';
-        strHTML += '<br>';
+
+        break;
+
     }
     $(".table-search").append(strHTML);
+
 }
