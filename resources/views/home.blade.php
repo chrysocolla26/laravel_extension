@@ -114,34 +114,33 @@
         <!-- page-content" -->
     </div>
     <!-- page-wrapper -->
-
-    <!-- using online scripts -->
-    <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('js/popper.min.js')}}"></script>
-    <script src="{{asset('js/jquery/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-
-    <!-- using local scripts -->
-    <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
-
-   <script type="text/javascript">
-        function rotateImg(){
-        var img=$('#arrowImg');
-        if (img.hasClass("transform")) {
-            img.removeClass("transform");
-        }else{
-            img.addClass('transform');
-        }
-    }
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            getListTabExtension();
-        });
-    </script>
-    <script src="{{asset('js/main.js')}}"></script>
 </body>
-
 </html>
+
+<!-- using online scripts -->
+<script src="{{asset('js/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
+<script src="{{asset('js/jquery/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+
+<!-- using local scripts -->
+<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+<script type="text/javascript">
+    function rotateImg(){
+    var img=$('#arrowImg');
+    if (img.hasClass("transform")) {
+        img.removeClass("transform");
+    }else{
+        img.addClass('transform');
+    }
+}
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        getListTabExtension();
+    });
+</script>
+<script src="{{asset('js/main.js')}}"></script>

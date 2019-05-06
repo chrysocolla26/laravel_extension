@@ -20,7 +20,6 @@ function getListExtension(table){
         data: {table:table},
         success: function(response){
             showListExtension(response.data, response.table);
-            console.log(response);
         },
         error: function(e){
         	location.reload();
