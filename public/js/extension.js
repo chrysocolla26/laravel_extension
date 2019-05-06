@@ -176,7 +176,7 @@ function deleteRow(id, table){
         dataType: "json",
         data: {id:id,table:table},
         success: function(response){
-            showListExtension(response.data(), table)
+            showListExtension(response.data, table)
         },
         error: function(e){
 
