@@ -12,12 +12,12 @@ function getListTabExtension(){
     });
 }
 
-function getListExtension(ref){
+function getListExtension(table){
 	$.ajax({
         type: "GET",
         url: "/getListExtension",
         dataType: "json",
-        data: {ref:ref},
+        data: {table:table},
         success: function(response){
             showListExtension(response.data, response.table);
             console.log(response);
@@ -170,5 +170,16 @@ function showListExtension(data, table){
 }
 
 function deleteRow(id, table){
-    alert(id+''+table);
+    $.ajax({
+        type: "GET",
+        url: "/deleteExt",
+        dataType: "json",
+        data: {id:id,table:table},
+        success: function(response){
+            showListExtension(response.data(), table)
+        },
+        error: function(e){
+
+        }
+    });
 }

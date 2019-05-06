@@ -16,13 +16,26 @@ class ExtensionController extends Controller
 	}
     public function getDataListExtension(){
     	$data = [];
-    	$ref = $_GET['ref'];
+    	$table = $_GET['table'];
     	// $data = DB::select('select * from '.$ref.'');
-    	$data = DB::select('select * from '.$ref.' order by Position ASC');
+    	$data = DB::select('select * from '.$table.' order by Position ASC');
 
     	return response([
     	    'data' => $data,
-            'table' => $ref
+            'table' => $table
         ]);
     }
+
+    public function deleteRow(){
+        $id = $_GET['id'];
+        $table = $_GET['table'];
+
+        $delete = DB::select('delete from '.$table.' where id='.$id);
+        $data = DB::select('select * from '.$table.' order by Position ASC');
+
+        return response([
+            'data' => $data
+        ]);
+    }
+
 }
