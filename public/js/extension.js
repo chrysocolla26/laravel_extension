@@ -19,7 +19,7 @@ function getListExtension(ref){
         dataType: "json",
         data: {ref:ref},
         success: function(response){
-            showTableExt(response);
+            showListExtension(response.data, response.table);
             console.log(response);
         },
         error: function(e){
@@ -44,10 +44,9 @@ function showListTab(data){
 	$(".sidebar-menu ul").append(strHTML);
 }
 
-function showTableExt(data){
+function showListExtension(data, table){
     var strHTML = "";
     var rowspan = 1;
-    var unitIdx = -1;
     var colspan = 2;
     var chkUnit = false;
     var chkDID = false;
@@ -140,7 +139,7 @@ function showTableExt(data){
                     strHTML += '<td>'+data[k].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[k].Tower+'</td>';
-                strHTML += '<td><a onclick=alertLoudy()><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
+                strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+table+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
     		}
     		i = i+rowspan-1;
@@ -160,7 +159,7 @@ function showTableExt(data){
                 strHTML += '<td>'+data[i].Floor+'</td>';
             if(chkTower)
                 strHTML += '<td>'+data[i].Tower+'</td>';
-            strHTML += '<td><a onclick=alertLoudy()><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
+            strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+table+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
             strHTML += '</tr>';
     	}
     }
@@ -170,6 +169,6 @@ function showTableExt(data){
 	$(".table-data").append(strHTML);
 }
 
-function alertLoudy(){
-    alert('loudy ganteng');
+function deleteRow(id, table){
+    alert(id+''+table);
 }
