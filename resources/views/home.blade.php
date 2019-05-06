@@ -107,7 +107,7 @@
                     </thead>
                 </table>
 
-                <table class="table-data table-bordered table-striped" border="1" width="60%"></table>
+                <table class="table-data table-bordered table-striped" border="1" width="80%"></table>
 
             </div>
         </main>

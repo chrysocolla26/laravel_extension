@@ -36,7 +36,7 @@ function showInfo(){
 
 function showListTab(data){
 	var strHTML = "";
-	
+
 	for(var i=0;i<data.length;i++){
 		strHTML += "<li class='sidebar-dropdown' id='"+data[i].TableName+"'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text'>"+data[i].TabName+"</span></a></li>";
 	}
@@ -48,7 +48,7 @@ function showTableExt(data){
     var strHTML = "";
     var rowspan = 1;
     var unitIdx = -1;
-    var colspan = 2;
+    var colspan = 1;
     var chkUnit = false;
     var chkDID = false;
     var chkPost = false;
@@ -90,7 +90,7 @@ function showTableExt(data){
     if(chkTower)
         colspan++;
 
-    strHTML = '<thead><tr scope="col" align="center"><th colspan="5"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
+    strHTML = '<thead><tr scope="col" align="center"><th colspan="'+colspan+'"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
 
     strHTML += '<thead><tr align="center">';
     strHTML += '<th>Name</th>';
@@ -143,6 +143,7 @@ function showTableExt(data){
                     strHTML += '<td>'+data[k].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[k].Tower+'</td>';
+                strHTML += '<td style="border: none; border-right: solid 1px #ffffff; background: #ffffff;"><button>edit</button></td>';
                 strHTML += '</tr>';
     		}
     		i = i+rowspan-1;
@@ -162,6 +163,7 @@ function showTableExt(data){
                 strHTML += '<td>'+data[i].Floor+'</td>';
             if(chkTower)
                 strHTML += '<td>'+data[i].Tower+'</td>';
+            strHTML += '<td style="border: none; border-right: solid 1px #ffffff; background: #ffffff;"><button>edit</button></td>';
             strHTML += '</tr>';
     	}
     }
