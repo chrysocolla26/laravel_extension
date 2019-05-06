@@ -163,12 +163,51 @@ function showListExtension(data, table){
     	}
     }
 
-
     strHTML += '</tbody>';
 	$(".table-data").append(strHTML);
 }
 
 function deleteRow(id, table){
+    var singleData = [];
+    var strBody = "";
+    var strFooter = "";
+    var deleteCheck = false;
+    $.ajax({
+        type: "GET",
+        url: "/getSingleData",
+        dataType: "json",
+        data: {id:id,table:table},
+        success: function(response){
+            singleData = response.data[0];
+            $('#modal-title').html("Delete this extension?");
+
+            strBody += '<strong>Name : </strong>'+singleData.Name+'<br>';
+            strBody += '<strong>Extension : </strong>'+singleData.Ext+'<br>';
+            if (singleData.Unit != "")
+                strBody += '<strong>Unit : </strong>'+singleData.Unit+'<br>';
+            if (singleData.Position != "")
+                strBody += '<strong>Position : </strong>'+singleData.Position+'<br>';
+            if (singleData.DID != "")
+                strBody += '<strong>DID : </strong>'+singleData.DID+'<br>';
+            if (singleData.Phone != "")
+                strBody += '<strong>Phone: </strong>'+singleData.Phone+'<br>';
+            if (singleData.Floor != "")
+                strBody += '<strong>Floor: </strong>'+singleData.Floor+'<br>';
+            if (singleData.Tower != "")
+                strBody += '<strong>Tower: </strong>'+singleData.Tower+'<br>';
+            $('.modal-body').html(strBody)
+
+            strFooter += '<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>';
+            strFooter += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick=deleteData("'+id+'","'+table+'")>Delete</button>';
+            $('.modal-footer').html(strFooter);
+
+            $('#modal-action').modal('show');
+        }
+    });
+
+}
+
+function deleteData(id, table){
     $.ajax({
         type: "GET",
         url: "/deleteExt",
@@ -176,9 +215,6 @@ function deleteRow(id, table){
         data: {id:id,table:table},
         success: function(response){
             showListExtension(response.data, table)
-        },
-        error: function(e){
-
         }
     });
 }
