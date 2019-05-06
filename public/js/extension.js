@@ -305,7 +305,7 @@ function showSearchExtesnsion(data) {
             }
 
             if(i>0){
-
+                strHTML += '<tr><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h1></h1></th></tr>';
                 if(data[i].Title != data[i-1].Title && data[i].Title != "")
 
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title +'</h1></th></tr></thead><tbody>';
@@ -360,7 +360,7 @@ function showSearchExtesnsion(data) {
                         strHTML += '<td>'+data[k].Tower+'</td>';
                     strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                     strHTML += '</tr>';
-                    strHTML += '<tr><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h1></h1></th></tr>';
+
                 }
                 i = i+rowspan-1;
                 rowspan = 1;
@@ -381,15 +381,13 @@ function showSearchExtesnsion(data) {
                     strHTML += '<td>'+data[i].Tower+'</td>';
                 strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
-                strHTML += '<tr><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h1></h1></th></tr>';
+
 
             }
         }
 
         strHTML += '</tbody>';
-
         strHTML += '</table>';
-
         break;
 
     }
