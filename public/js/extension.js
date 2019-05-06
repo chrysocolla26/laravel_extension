@@ -72,6 +72,7 @@ function showListExtension(data, table){
         if (data[i].Tower != "")
             chkTower = true;
     }
+
     if(chkUnit)
         colspan++;
     if(chkPost)
@@ -214,13 +215,12 @@ function deleteData(id, table){
         dataType: "json",
         data: {id:id,table:table},
         success: function(response){
-            showListExtension(response.data, table)
+            showListExtension(response.data, table);
         }
     });
 }
 
 function searchExtension(evt){
-    $(".table-data").html("");
     var name = $(".search-menu").val();
     $.ajax({
         type: "GET",
@@ -228,12 +228,17 @@ function searchExtension(evt){
         dataType: "json",
         data: {name:name},
         success: function(response){
+            console.log(response);
             showSearchExtesnsion(response.data);
         },
     });
 }
 
 function showSearchExtesnsion(data) {
+    $(".syahdanImage").hide();
+    $(".table-info").hide();
+    $(".table-data").html("");
+    $(".table-search").html("");
     var strHTML = '';
     var rowspan = 1;
     var colspan = 2;
@@ -244,14 +249,14 @@ function showSearchExtesnsion(data) {
     var chkFloor = false;
     var chkTower = false;
     for (var x = 0; x < data.length; x++) {
-        strHTML += '<table>';
+        strHTML += '<table class="table-data table-bordered table-striped" border="1" width="80%">';
 
         if(x==0)
-            strHTML = '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h2>' + data[0].Title + '</h2></th></tr></thead><tbody>';
+            strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h2>' + data[0].Title + '</h2></th></tr></thead><tbody>';
 
         if(x>0)
             if(data[x].Title != data[x-1].Title)
-                strHTML = '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h2>' + data[x].Title + '</h2></th></tr></thead><tbody>';
+                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h2>' + data[x].Title + '</h2></th></tr></thead><tbody>';
 
         for(var i=0;i<data.length;i++) {
             if (data[i].Unit != "")
@@ -331,7 +336,7 @@ function showSearchExtesnsion(data) {
                         strHTML += '<td>'+data[k].Floor+'</td>';
                     if(chkTower)
                         strHTML += '<td>'+data[k].Tower+'</td>';
-                    strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+table+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
+                    strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                     strHTML += '</tr>';
                 }
                 i = i+rowspan-1;
@@ -351,11 +356,10 @@ function showSearchExtesnsion(data) {
                     strHTML += '<td>'+data[i].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[i].Tower+'</td>';
-                strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+table+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
+                strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
             }
         }
-
         strHTML += '</tbody>';
         strHTML += '</table>';
         strHTML += '<br>';
