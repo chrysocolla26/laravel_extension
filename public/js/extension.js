@@ -254,14 +254,6 @@ function showSearchExtesnsion(data) {
 
         strHTML += '<table class="table-data table-bordered table-striped" border="1" width="80%">';
 
-        // if (x == 0)
-        //     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[0].Title + '</h1></th></tr></thead><tbody>';
-        //
-        // if (x > 0)
-        //     if (data[x].Title != data[x - 1].Title)
-        //         strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[x].Title + '</h1></th></tr></thead><tbody>';
-
-
         for(var i=0;i<data.length;i++) {
             if (data[i].Unit != "")
                 chkUnit = true;
@@ -296,7 +288,6 @@ function showSearchExtesnsion(data) {
             if(i==0){
 
                 if(data[i].Title == data[0].Title && data[i].Title != "") {
-                    // strHTML += '<tr ><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h2></h2></th></tr>';
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title + '</h1></th></tr></thead><tbody>';
                 }
             }
@@ -355,7 +346,7 @@ function showSearchExtesnsion(data) {
                         strHTML += '<td>'+data[k].Floor+'</td>';
                     if(chkTower)
                         strHTML += '<td>'+data[k].Tower+'</td>';
-                    strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
+                    strHTML += '<td><a onclick=deleteRow("'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                     strHTML += '</tr>';
 
                 }
@@ -376,18 +367,13 @@ function showSearchExtesnsion(data) {
                     strHTML += '<td>'+data[i].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[i].Tower+'</td>';
-                strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+data[x].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
+                strHTML += '<td><a onclick=deleteRow("'+data[i].id+'","'+data[i].TableName+'")><img src="img/delete-icon.svg" alt="" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
-
-
             }
         }
-
         strHTML += '</tbody>';
         strHTML += '</table>';
         break;
-
     }
     $(".table-search").append(strHTML);
-
 }
