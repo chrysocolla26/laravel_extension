@@ -66,8 +66,8 @@
                 <div class="sidebar-item sidebar-search">
                     <div>
                         <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search..." >
-                            <div class="input-group-append" onclick="searchExtension(event)">
+                            <input type="text" class="form-control search-menu" onkeydown="searchExtension(event.keyCode)" placeholder="Search..." >
+                            <div class="input-group-append" onclick="searchExtension('13')">
                                 <span class="input-group-text">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </span>

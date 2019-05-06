@@ -220,18 +220,20 @@ function deleteData(id, table){
     });
 }
 
-function searchExtension(evt){
-    var name = $(".search-menu").val();
-    $.ajax({
-        type: "GET",
-        url: "/showSearch",
-        dataType: "json",
-        data: {name:name},
-        success: function(response){
-            console.log(response);
-            showSearchExtension(response.data);
-        },
-    });
+function searchExtension(code){
+    if(code == "13") {
+        var name = $(".search-menu").val();
+        $.ajax({
+            type: "GET",
+            url: "/showSearch",
+            dataType: "json",
+            data: {name: name},
+            success: function (response) {
+                console.log(response);
+                showSearchExtension(response.data);
+            },
+        });
+    }
 }
 
 function showSearchExtension(data) {
