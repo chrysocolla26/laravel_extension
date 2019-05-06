@@ -286,28 +286,25 @@ function showSearchExtesnsion(data) {
             colspan++;
         if(chkFloor)
             colspan++;
-        if(chkTower)
+        if(chkTower) {
             colspan++;
 
 
-
-
-
-
-
+        }
         for(var i=0;i<data.length;i++){
 
             if(i==0){
 
-                if(data[i].Title == data[0].Title && data[i].Title != "")
+                if(data[i].Title == data[0].Title && data[i].Title != "") {
                     // strHTML += '<tr ><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h2></h2></th></tr>';
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title + '</h1></th></tr></thead><tbody>';
+                }
             }
-
             if(i>0){
-                strHTML += '<tr><th colspan="'+colspan+'" style="border-left-color:white;border-right-color: white"><h1></h1></th></tr>';
+                if(data[i].Title) {
+                    strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
+                }
                 if(data[i].Title != data[i-1].Title && data[i].Title != "")
-
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title +'</h1></th></tr></thead><tbody>';
                 if(data[i].Unit != data[i-1].Unit && data[i].Unit != "")
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="'+colspan+'">'+data[i].Unit+'</th></tr></thead>';
