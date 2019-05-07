@@ -8,15 +8,9 @@
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
     <title>List Extension</title>
 
-    <!-- using online links -->
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
-
-    <!-- using local links -->
-    <!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"> -->
 
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar-themes.css')}}">
@@ -25,20 +19,13 @@
     {{--Swall Fire--}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-    <script type="text/javascript" src="{{asset('js/extension.js')}}"></script>
-
-    <!-- using online scripts -->
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
     <script src="{{asset('dist/js/bootstrap.min.js')}}"></script>
 
-    <!-- using local scripts -->
-    <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+    <script type="text/javascript" src="{{asset('js/extension.js')}}"></script>
 </head>
 
 <body>
@@ -123,14 +110,14 @@
                     </thead>
                 </table>
 
-                <table class="table-data table-bordered table-striped" border="1" width="80%"></table>
+                <table class="table-data table-bordered table-hover" border="1" width="80%"></table>
 
                 <div class="table-search"></div>
 
             </div>
         </main>
         <!-- page-content" -->
-        <div class="modal fade" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
