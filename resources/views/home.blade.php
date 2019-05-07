@@ -23,7 +23,8 @@
     <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.ico')}}" />
 
     {{--Swall Fire--}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    {{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>--}}
+    <script type="text/javascript" src="{{asset('js/sweetalert2.all.min.js')}}"></script>
 
     <script type="text/javascript" src="{{asset('js/extension.js')}}"></script>
 
@@ -50,20 +51,26 @@
                     <a href="javascript:;" onclick="showInfo()">list extension binus</a>
                 </div>
                 <!-- sidebar-header  -->
-                <div class="sidebar-item sidebar-header d-flex flex-nowrap">
-                    <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="img/user.jpg" alt="User picture">
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap" style="align-content: center">
+                    <div class="loginBtn" >
+                        <a href="/login">
+                            <button type="button" class="btn btn-light" >Login Admin</button>
+                        </a>
+
                     </div>
-                    <div class="user-info">
-                        <span class="user-name">Jhon
-                            <strong>Smith</strong>
-                        </span>
-                        <span class="user-role">Administrator</span>
-                        <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
-                    </div>
+                    {{--<div class="user-pic">--}}
+                        {{--<img class="img-responsive img-rounded" src="img/user.jpg" alt="User picture">--}}
+                    {{--</div>--}}
+                    {{--<div class="user-info">--}}
+                        {{--<span class="user-name">Jhon--}}
+                            {{--<strong>Smith</strong>--}}
+                        {{--</span>--}}
+                        {{--<span class="user-role">Administrator</span>--}}
+                        {{--<span class="user-status">--}}
+                            {{--<i class="fa fa-circle"></i>--}}
+                            {{--<span>Online</span>--}}
+                        {{--</span>--}}
+                    {{--</div>--}}
                 </div>
                 <!-- sidebar-search  -->
                 <div class="sidebar-item sidebar-search">

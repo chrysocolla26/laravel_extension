@@ -19,3 +19,7 @@ Route::get('/getListExtension', 'ExtensionController@getDataListExtension');
 Route::get('/getSingleData', 'ExtensionController@getSingleRow');
 Route::get('/deleteExt','ExtensionController@deleteRow');
 Route::get('/showSearch','ExtensionController@searchExtension');
+
+Route::get('/login',function (){
+    return view('login');
+});

@@ -260,6 +260,7 @@ function showSearchExtension(name,data) {
     var chkPhone = false;
     var chkFloor = false;
     var chkTower = false;
+    var chkLocation = false;
 
     for (var x = 0; x < data.length; x++) {
 
