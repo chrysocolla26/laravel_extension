@@ -229,8 +229,15 @@ function searchExtension(code){
             dataType: "json",
             data: {name: name},
             success: function (response) {
-                console.log(response);
-                showSearchExtension(response.data);
+                console.log(response.data);
+                if(response.data.length==0){
+                    Swal.fire({
+                        type: 'error',
+                        text: 'Data tidak ditemukan',
+                        confirmButtonColor: '#762F8D',
+                    })
+                }else
+                    showSearchExtension(response.data);
             },
         });
     }
@@ -251,14 +258,6 @@ function showSearchExtension(data) {
     var chkPhone = false;
     var chkFloor = false;
     var chkTower = false;
-
-    if(data.length==0){
-        // Swal.fire(
-        //     'Data tidak ditemukan'
-        // )
-        alert("Data tidak ditemukan");
-        location.href="/";
-    }
 
     for (var x = 0; x < data.length; x++) {
 
@@ -297,40 +296,58 @@ function showSearchExtension(data) {
         for(var i=0;i<data.length;i++){
 
             if(i==0){
-
                 if(data[i].Title == data[0].Title && data[i].Title != "") {
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title + '</h1></th></tr></thead><tbody>';
                 }
+                strHTML += '<thead><tr align="center">';
+                strHTML += '<th>Name</th>';
+
+                if(chkPost)
+                    strHTML += '<th>Position</th>';
+
+                strHTML += '<th>Extension</th>';
+
+                if(chkDID)
+                    strHTML += '<th>DID</th>';
+                if(chkPhone)
+                    strHTML += '<th>Phone</th>';
+                if(chkFloor)
+                    strHTML += '<th>Floor</th>';
+                if(chkTower)
+                    strHTML += '<th>Tower</th>';
+                strHTML += '</tr></thead>';
             }
             if(i>0){
-                if(data[i].Title) {
+                // if(data[i].Title) {
+                //     strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
+                // }
+                if(data[i].Title != data[i-1].Title && data[i].Title != "") {
                     strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title + '</h1></th></tr></thead><tbody>';
+
+                    strHTML += '<thead><tr align="center">';
+                    strHTML += '<th>Name</th>';
+
+                    if(chkPost)
+                        strHTML += '<th>Position</th>';
+
+                    strHTML += '<th>Extension</th>';
+
+                    if(chkDID)
+                        strHTML += '<th>DID</th>';
+                    if(chkPhone)
+                        strHTML += '<th>Phone</th>';
+                    if(chkFloor)
+                        strHTML += '<th>Floor</th>';
+                    if(chkTower)
+                        strHTML += '<th>Tower</th>';
+                    strHTML += '</tr></thead>';
                 }
-                if(data[i].Title != data[i-1].Title && data[i].Title != "")
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h1>' + data[i].Title +'</h1></th></tr></thead><tbody>';
                 if(data[i].Unit != data[i-1].Unit && data[i].Unit != "")
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="'+colspan+'">'+data[i].Unit+'</th></tr></thead>';
                 if(data[i].Group != data[i-1].Group && data[i].Group != "")
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="'+colspan+'"><h5>'+data[i].Group+'</h5></th></tr></thead>';
             }
-
-            strHTML += '<thead><tr align="center">';
-            strHTML += '<th>Name</th>';
-
-            if(chkPost)
-                strHTML += '<th>Position</th>';
-
-            strHTML += '<th>Extension</th>';
-
-            if(chkDID)
-                strHTML += '<th>DID</th>';
-            if(chkPhone)
-                strHTML += '<th>Phone</th>';
-            if(chkFloor)
-                strHTML += '<th>Floor</th>';
-            if(chkTower)
-                strHTML += '<th>Tower</th>';
-            strHTML += '</tr></thead>';
 
             for(var j=i+1;j<data.length;j++){
                 if(data[i].Ext == data[j].Ext)
