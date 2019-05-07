@@ -252,6 +252,14 @@ function showSearchExtension(data) {
     var chkFloor = false;
     var chkTower = false;
 
+    if(data.length==0){
+        // Swal.fire(
+        //     'Data tidak ditemukan'
+        // )
+        alert("Data tidak ditemukan");
+        location.href="/";
+    }
+
     for (var x = 0; x < data.length; x++) {
 
         strHTML += '<table class="table-data table-bordered table-striped" border="1" width="80%">';
@@ -285,6 +293,7 @@ function showSearchExtension(data) {
 
 
         }
+
         for(var i=0;i<data.length;i++){
 
             if(i==0){

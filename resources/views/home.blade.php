@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="{{asset('css/sidebar-themes.css')}}">
     <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.ico')}}" />
 
+    {{--Swall Fire--}}
+    {{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>--}}
+
     <script type="text/javascript" src="{{asset('js/extension.js')}}"></script>
 
     <!-- using online scripts -->
