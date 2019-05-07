@@ -239,7 +239,7 @@ function searchExtension(code){
                         confirmButtonColor: '#762F8D',
                     })
                 }else
-                    showSearchExtension(response.data);
+                    showSearchExtension(name, response.data);
             },
         });
     }
