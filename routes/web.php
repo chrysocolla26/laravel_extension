@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Session;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +26,8 @@ Route::get('/login',function (){
 });
 
 Route::post('/checkLogin','ExtensionController@checkLogin');
+
+Route::get('/logout',function(){
+    Session::flush();
+    return redirect('/');
+});
