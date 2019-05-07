@@ -53,6 +53,7 @@ function showListExtension(data, table){
     var name = "";
     var rowspan = 1;
     var colspan = 2;
+    chkGroup = false;
     chkUnit = false;
     chkDID = false;
     chkPost = false;
@@ -65,6 +66,8 @@ function showListExtension(data, table){
     $(".table-data").html("");
 
     for(var i=0;i<data.length;i++) {
+        if (data[i].Group != "")
+            chkGroup = true;
         if (data[i].Unit != "")
             chkUnit = true;
         if (data[i].Position != "")
