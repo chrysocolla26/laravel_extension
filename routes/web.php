@@ -20,3 +20,7 @@ Route::get('/getSingleData', 'ExtensionController@getSingleRow');
 Route::get('/deleteExt','ExtensionController@deleteRow');
 Route::get('/updateExt','ExtensionController@updateRow');
 Route::get('/showSearch','ExtensionController@searchExtension');
+
+Route::get('/login',function (){
+    return view('login');
+});

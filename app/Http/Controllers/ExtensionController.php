@@ -19,7 +19,8 @@ class ExtensionController extends Controller
     	$data = [];
     	$table = $_GET['table'];
     	// $data = DB::select('select * from '.$ref.'');
-    	$data = DB::select('select * from '.$table.' order by Unit ASC');
+
+    	$data = DB::select('select * from '.$table.' order by `Unit` ASC');
 
     	return response([
     	    'data' => $data,
@@ -93,6 +94,22 @@ class ExtensionController extends Controller
 	        'data' => $data,
             'name' => $name
         ]);
+    }
+
+    public function checkLogin(Request $request)
+    {
+
+        $data = DB::table('user')->where('username', $request->username)->first();
+
+        if($data!=null){
+            if(Hash::check($request->password, $data->password)){
+                return redirect('/');
+            }else{
+                return redirect('/')->with("alert","Invalid Password");
+            }
+        }else{
+            return redirect('/')->with("alert","Invalid Email");
+        }
     }
 
 }
