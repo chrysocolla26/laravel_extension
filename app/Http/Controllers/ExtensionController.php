@@ -106,7 +106,8 @@ class ExtensionController extends Controller
         if($data!=null){
             if(Hash::check($request->password, $data->password)){
                 Session::put("login",$request->username);
-                return view('home',compact('data',$data))->with("alert","SUCCESS");
+                Session::put("image",$data->image);
+                return redirect('/')->with("alert","SUCCESS");
             }else{
                 return redirect('/login')->with("alert","Invalid Password");
             }

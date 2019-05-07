@@ -48,7 +48,7 @@
                     @endif
                     @if(Session::get('login'))
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="/img/{{$data->image}}" alt="img/user.jpg">
+                        <img class="img-responsive img-rounded" src="img/{{Session::get("image")}}" onerror="this.src='img/user.jpg';">
                     </div>
                     <div class="user-info">
                         <span class="user-name">Hello,
