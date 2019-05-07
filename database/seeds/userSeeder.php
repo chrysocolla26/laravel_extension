@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class userSeeder extends Seeder
 {
@@ -12,8 +13,9 @@ class userSeeder extends Seeder
     public function run()
     {
         DB::table('user')->insert([
+            'image'=>'sonic.jpg',
             'username' => 'admin',
-            'password' => 'podeng'
+            'password' => Hash::make('podeng')
         ]);
     }
 }

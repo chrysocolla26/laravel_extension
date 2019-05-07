@@ -39,25 +39,28 @@
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap" style="align-content: center">
+                    @if(!Session::get('login'))
                     <div class="loginBtn" >
                         <a href="/login">
                             <button type="button" class="btn btn-light" >Login Admin</button>
                         </a>
-
                     </div>
-                    {{--<div class="user-pic">--}}
-                        {{--<img class="img-responsive img-rounded" src="img/user.jpg" alt="User picture">--}}
-                    {{--</div>--}}
-                    {{--<div class="user-info">--}}
-                        {{--<span class="user-name">Jhon--}}
-                            {{--<strong>Smith</strong>--}}
-                        {{--</span>--}}
-                        {{--<span class="user-role">Administrator</span>--}}
-                        {{--<span class="user-status">--}}
-                            {{--<i class="fa fa-circle"></i>--}}
-                            {{--<span>Online</span>--}}
-                        {{--</span>--}}
-                    {{--</div>--}}
+                    @endif
+                    @if(Session::get('login'))
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="/img/{{$data->image}}" alt="img/user.jpg">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Hello,
+                            <strong>{{Session::get('login')}}</strong>
+                        </span>
+                        <span class="user-role">Administrator</span>
+                        <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                        </span>
+                    </div>
+                    @endif
                 </div>
                 <!-- sidebar-search  -->
                 <div class="sidebar-item sidebar-search">

@@ -14,12 +14,12 @@
     {{--<link rel="stylesheet" href="{{asset('css/custom.css')}}">--}}
     {{--<link rel="stylesheet" href="{{asset('css/login.css')}}">--}}
     {{--<link rel="stylesheet" href="{{asset('css/style.css')}}">--}}
+    <script type="text/javascript" src="{{asset('js/sweetalert2.all.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/main_new.css">
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/style-edu.css">
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/login-edu.css">
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/custom.css">
     <script src="{{asset('js/jquery.js')}}"></script>
-    <script src="{{asset('js/ping.js')}}"></script>
     {{--<script src="{{asset('js/custom.js')}}"></script>--}}
 </head>
 
@@ -99,7 +99,15 @@
 </div>
 <iframe scrolling="no" frameborder="0" style="z-index: 2147483647; border: 0px; position: absolute; height: 70px; width: 185px; left: 157px; top: 434px; display: none;" __idm_frm__="481"></iframe>
 <script>
-    $('.custom-combobox').binus_combobox();
+    $(document).ready(function(){
+        @if(Session::has('alert'))
+            Swal.fire({
+                type: 'error',
+                text: '{{Session::get('alert')}}',
+                confirmButtonColor: '#762F8D',
+            });
+        @endif
+    });
 </script>
 
 

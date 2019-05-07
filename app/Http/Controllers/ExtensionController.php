@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
+use Illuminate\Support\Facades\Session;
 
 class ExtensionController extends Controller
 {
@@ -104,12 +105,13 @@ class ExtensionController extends Controller
 
         if($data!=null){
             if(Hash::check($request->password, $data->password)){
-                return redirect('/');
+                Session::put("login",$request->username);
+                return view('home',compact('data',$data))->with("alert","SUCCESS");
             }else{
-                return redirect('/')->with("alert","Invalid Password");
+                return redirect('/login')->with("alert","Invalid Password");
             }
         }else{
-            return redirect('/')->with("alert","Invalid Email");
+            return redirect('/login')->with("alert","Invalid Email");
         }
     }
 
