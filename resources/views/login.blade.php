@@ -74,7 +74,7 @@
                                 </p>
                                 <br>
                                 <p>
-                                    <input type="submit" id="password_submitBtn" value="Login" class="button button-primary wide" onclick="();">
+                                    <input type="submit" id="password_submitBtn" value="Login" class="button button-primary wide">
                                 </p>
                             </form>
 

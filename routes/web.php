@@ -24,3 +24,5 @@ Route::get('/showSearch','ExtensionController@searchExtension');
 Route::get('/login',function (){
     return view('login');
 });
+
+Route::post('/checkLogin','ExtensionController@checkLogin');
