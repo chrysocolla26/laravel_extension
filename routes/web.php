@@ -19,6 +19,7 @@ Route::get('/getListExtension', 'ExtensionController@getDataListExtension');
 Route::get('/getSingleData', 'ExtensionController@getSingleRow');
 Route::get('/deleteExt','ExtensionController@deleteRow');
 Route::get('/updateExt','ExtensionController@updateRow');
+Route::get('/addExt','ExtensionController@addRow');
 Route::get('/showSearch','ExtensionController@searchExtension');
 Route::get('/getSessionLogin','ExtensionController@getSessionLogin');
 
