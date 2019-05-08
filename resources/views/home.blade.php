@@ -36,8 +36,8 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
-                <div class="sidebar-item sidebar-brand">
-                    <a href="javascript:;" onclick="showInfo()">list extension binus</a>
+                <div class="sidebar-item sidebar-brand" >
+                    <a href="javascript:;" onclick="showInfo()" style="text-align: center">list extension binus</a>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap" style="align-content: center;text-align: center">
