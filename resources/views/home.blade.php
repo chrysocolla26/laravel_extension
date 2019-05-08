@@ -59,6 +59,11 @@
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
                         </span>
+                        <span>
+                            <a href="/logout">
+                                <button class="btn btn-danger">Logout</button>
+                            </a>
+                        </span>
                     </div>
                     @endif
                 </div>

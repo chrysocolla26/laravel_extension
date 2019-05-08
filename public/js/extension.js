@@ -634,6 +634,7 @@ function showSearchExtension(name,data) {
                         strHTML += '<td>'+data[k].Floor+'</td>';
                     if(chkTower)
                         strHTML += '<td>'+data[k].Tower+'</td>';
+                    
                     strHTML += '<td><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
                     strHTML += '</tr>';
 
