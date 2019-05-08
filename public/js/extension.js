@@ -26,9 +26,6 @@ function getListTabExtension(){
         dataType: "json",
         success: function(response){
             showListTab(response);
-        },
-        error: function(e){
-        	location.reload();
         }
     });
 }
@@ -66,6 +63,8 @@ function showListExtension(data, table){
     var name = "";
     var rowspan = 1;
     var colspan = 2;
+    if(sessionLogin)
+        colspan++;
     chkGroup = false;
     chkUnit = false;
     chkDID = false;
@@ -127,6 +126,8 @@ function showListExtension(data, table){
         strHTML += '<th>Floor</th>';
     if(chkTower)
         strHTML += '<th>Tower</th>';
+    if(sessionLogin)
+        strHTML += '<th>Action</th>';
     strHTML += '</tr></thead>';
 
     for(var i=0;i<data.length;i++){
@@ -169,8 +170,11 @@ function showListExtension(data, table){
                 if(chkTower)
                     strHTML += '<td>'+data[k].Tower+'</td>';
 
-                if(sessionLogin)
-                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+                if(sessionLogin) {
+                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '</td>'
+                }
                 strHTML += '</tr>';
     		}
     		i = i+rowspan-1;
@@ -190,8 +194,11 @@ function showListExtension(data, table){
             if(chkTower)
                 strHTML += '<td>'+data[i].Tower+'</td>';
 
-            if(sessionLogin)
-                strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+            if(sessionLogin) {
+                strHTML += '<td width="100px"><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                strHTML += '&nbsp;<a><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                strHTML += '</td>'
+            }
             strHTML += '</tr>';
     	}
     }
@@ -536,6 +543,8 @@ function showSearchExtension(name,data) {
     var strHTML = '';
     var rowspan = 1;
     var colspan = 2;
+    if(sessionLogin)
+        colspan++;
     chkGroup = false;
     chkUnit = false;
     chkDID = false;
@@ -546,7 +555,7 @@ function showSearchExtension(name,data) {
 
     for (var x = 0; x < data.length; x++) {
 
-        strHTML += '<table class="table-data table-bordered table-striped" border="1" width="80%">';
+        strHTML += '<table class="table-data table-bordered table-striped table-hover" border="1" width="80%">';
 
         for(var i=0;i<data.length;i++) {
             if (data[i].Group != "")
@@ -599,6 +608,8 @@ function showSearchExtension(name,data) {
                     strHTML += '<th>Floor</th>';
                 if(chkTower)
                     strHTML += '<th>Tower</th>';
+                if(sessionLogin)
+                    strHTML += '<th width="100px">Action</th>';
                 strHTML += '</tr></thead>';
             }
             if(i>0){
@@ -622,6 +633,8 @@ function showSearchExtension(name,data) {
                         strHTML += '<th>Floor</th>';
                     if(chkTower)
                         strHTML += '<th>Tower</th>';
+                    if(sessionLogin)
+                        strHTML += '<th>Action</th>';
                     strHTML += '</tr></thead>';
                 }
                 if(data[i].Unit != data[i-1].Unit && data[i].Unit != "")
@@ -654,7 +667,7 @@ function showSearchExtension(name,data) {
                     if(chkTower)
                         strHTML += '<td>'+data[k].Tower+'</td>';
                     if(sessionLogin)
-                        strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+                        strHTML += '<td><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
 
                     strHTML += '</tr>';
 
@@ -677,7 +690,7 @@ function showSearchExtension(name,data) {
                     strHTML += '<td>'+data[i].Tower+'</td>';
 
                 if(sessionLogin)
-                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[i].id + '","' + data[i].TableName + '")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+                    strHTML += '<td><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[i].id + '","' + data[i].TableName + '")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
 
                 strHTML += '</tr>';
             }
