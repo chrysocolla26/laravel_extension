@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/login-edu.css">
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/custom.css">
     <script src="{{asset('js/jquery.js')}}"></script>
+
+    <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.ico')}}" />
     {{--<script src="{{asset('js/custom.js')}}"></script>--}}
 </head>
 
