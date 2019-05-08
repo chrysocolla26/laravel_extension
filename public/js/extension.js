@@ -26,9 +26,6 @@ function getListTabExtension(){
         dataType: "json",
         success: function(response){
             showListTab(response);
-        },
-        error: function(e){
-        	location.reload();
         }
     });
 }
