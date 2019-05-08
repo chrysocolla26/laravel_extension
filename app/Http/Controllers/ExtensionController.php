@@ -116,4 +116,11 @@ class ExtensionController extends Controller
         }
     }
 
+    public function getSessionLogin(){
+	    $login = Session::get("login");
+        return response([
+            'login' => $login,
+        ]);
+    }
+
 }

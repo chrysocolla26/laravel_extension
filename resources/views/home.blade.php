@@ -8,8 +8,10 @@
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
     <title>List Extension</title>
 
+    {{--Custom Button--}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
@@ -38,11 +40,11 @@
                     <a href="javascript:;" onclick="showInfo()">list extension binus</a>
                 </div>
                 <!-- sidebar-header  -->
-                <div class="sidebar-item sidebar-header d-flex flex-nowrap" style="align-content: center">
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap" style="align-content: center;text-align: center">
                     @if(!Session::get('login'))
-                    <div class="loginBtn" >
+                    <div class="loginBtn" style="width: 100%" >
                         <a href="/login">
-                            <button type="button" class="btn btn-light" >Login Admin</button>
+                            <button type="button" class="btn btn-outline-light " style="width: 100%" ><span class="fas fa-user-shield"></span> Login Admin</button>
                         </a>
                     </div>
                     @endif
@@ -59,7 +61,7 @@
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
                         </span>
-                        <span>
+                        <span style="margin-top: 10px">
                             <a href="/logout">
                                 <button class="btn btn-danger">Logout</button>
                             </a>
@@ -165,8 +167,12 @@
     }
 }
 </script>
+
+
+
 <script type="text/javascript">
     $(document).ready(function(){
+        getSession();
         getListTabExtension();
     });
 </script>

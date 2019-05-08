@@ -531,3 +531,7 @@ body {
 .table-data tr td, tr th{
   padding: 5px;
 }
+
+a{
+    cursor: pointer;
+}

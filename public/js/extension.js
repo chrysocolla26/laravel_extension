@@ -5,6 +5,19 @@ var chkPost = false;
 var chkPhone = false;
 var chkFloor = false;
 var chkTower = false;
+var sessionLogin = false;
+
+function getSession() {
+    $.ajax({
+        type: "GET",
+        url: "/getSessionLogin",
+        dataType: "json",
+        success: function(response){
+            if(response.login != null)
+                sessionLogin = true;
+        },
+    });
+}
 
 function getListTabExtension(){
 	$.ajax({
@@ -60,6 +73,7 @@ function showListExtension(data, table){
     chkPhone = false;
     chkFloor = false;
     chkTower = false;
+
 
     $(".syahdanImage").hide();
     $(".table-info").hide();
@@ -154,7 +168,9 @@ function showListExtension(data, table){
                     strHTML += '<td>'+data[k].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[k].Tower+'</td>';
-                strHTML += '<td><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+
+                if(sessionLogin)
+                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
                 strHTML += '</tr>';
     		}
     		i = i+rowspan-1;
@@ -173,7 +189,9 @@ function showListExtension(data, table){
                 strHTML += '<td>'+data[i].Floor+'</td>';
             if(chkTower)
                 strHTML += '<td>'+data[i].Tower+'</td>';
-            strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+
+            if(sessionLogin)
+                strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
             strHTML += '</tr>';
     	}
     }
@@ -514,7 +532,7 @@ function showSearchExtension(name,data) {
     $(".table-data").html("");
     $(".table-search").html("");
 
-    
+
     var strHTML = '';
     var rowspan = 1;
     var colspan = 2;
@@ -635,8 +653,9 @@ function showSearchExtension(name,data) {
                         strHTML += '<td>'+data[k].Floor+'</td>';
                     if(chkTower)
                         strHTML += '<td>'+data[k].Tower+'</td>';
+                    if(sessionLogin)
+                        strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
 
-                    strHTML += '<td><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+data[k].TableName+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
                     strHTML += '</tr>';
 
                 }
@@ -656,7 +675,10 @@ function showSearchExtension(name,data) {
                     strHTML += '<td>'+data[i].Floor+'</td>';
                 if(chkTower)
                     strHTML += '<td>'+data[i].Tower+'</td>';
-                strHTML += '<td><a onclick=detailDeleteRow("'+name+'","'+data[i].id+'","'+data[i].TableName+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[i].id+'","'+data[i].TableName+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+
+                if(sessionLogin)
+                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[i].id + '","' + data[i].TableName + '")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+
                 strHTML += '</tr>';
             }
         }
