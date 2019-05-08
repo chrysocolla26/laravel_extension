@@ -170,8 +170,11 @@ function showListExtension(data, table){
                 if(chkTower)
                     strHTML += '<td>'+data[k].Tower+'</td>';
 
-                if(sessionLogin)
-                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[k].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+                if(sessionLogin) {
+                    strHTML += '<td width="90px"><a onclick=detailDeleteRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '</td>'
+                }
                 strHTML += '</tr>';
     		}
     		i = i+rowspan-1;
@@ -191,8 +194,11 @@ function showListExtension(data, table){
             if(chkTower)
                 strHTML += '<td>'+data[i].Tower+'</td>';
 
-            if(sessionLogin)
-                strHTML += '<td width="90px"><a onclick=detailDeleteRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("'+name+'","'+data[i].id+'","'+table+'")><img src="img/delete-icon.png" width="25px" height="auto"></a></td>';
+            if(sessionLogin) {
+                strHTML += '<td width="100px"><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                strHTML += '&nbsp;<a><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                strHTML += '</td>'
+            }
             strHTML += '</tr>';
     	}
     }
