@@ -141,17 +141,34 @@ function showListExtension(data, table){
 
     for(var i=0;i<data.length;i++){
         if(i==0){
-            if (data[i].Group != "")
-                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+            if (data[i].Group != "") {
+                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + data[i].Group + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                // strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                //strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                strHTML += '</h5></th></tr></thead>';
+            }
             if(data[i].Unit != "") {
-                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '</th></tr></thead>';
+                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                //strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                // strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                strHTML += '</h5></th></tr></thead>';
             }
         }
     	if(i>0){
             if (data[i].Group != data[i - 1].Group && data[i].Group != "")
-                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + data[i].Group + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                // strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                //strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                strHTML += '</h5></th></tr></thead>';
             if(data[i].Unit != data[i-1].Unit && data[i].Unit != "") {
-                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '</th></tr></thead>';
+                strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + data[i].Unit + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                //strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
+                // strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                strHTML += '</h5></th></tr></thead>';
             }
         }
 
@@ -183,7 +200,7 @@ function showListExtension(data, table){
                     strHTML += '<td><a onclick=detailDeleteRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
-                    strHTML += '</td>'
+                    strHTML += '</td>';
                 }
                 strHTML += '</tr>';
     		}
@@ -257,6 +274,31 @@ function detailDeleteRow(name, id, table){
             $('#modal-action').modal('show');
         }
     });
+}
+
+function detailDeleteGroup(name, unit, group, table){
+    // alert(decodeURIComponent(unit));
+    var strBody = "";
+    var strFooter = "";
+
+    $('.modal-dialog').removeClass("modal-lg");
+
+    if(group!="") {
+        $('#modal-title').html("<h4>Delete this Group?</h4>");
+        strBody += '<strong>Group : </strong>' + decodeURIComponent(group) + '<br>';
+    }
+    if(unit!="") {
+        $('#modal-title').html("<h4>Delete this Unit?</h4>");
+        strBody += '<strong>Unit : </strong>' + decodeURIComponent(unit) + '<br>';
+    }
+
+    $('.modal-body').html(strBody)
+
+    strFooter += '<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>';
+    strFooter += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick=deleteGroup("'+name+'","'+unit+'","'+group+'","'+table+'")>Delete</button>';
+    $('.modal-footer').html(strFooter);
+
+    $('#modal-action').modal('show');
 }
 
 function detailUpdateRow(name, id, table){
@@ -482,6 +524,21 @@ function deleteData(name, id, table){
         url: "/deleteExt",
         dataType: "json",
         data: {name:name,id:id,table:table},
+        success: function(response){
+            if(name == "")
+                showListExtension(response.data, table);
+            else
+                showSearchExtension(name,response.data);
+        }
+    });
+}
+
+function deleteGroup(name, unit, group, table){
+    $.ajax({
+        type: "GET",
+        url: "/deleteGroupExt",
+        dataType: "json",
+        data: {name:name,unit:unit,group:group,table:table},
         success: function(response){
             if(name == "")
                 showListExtension(response.data, table);
