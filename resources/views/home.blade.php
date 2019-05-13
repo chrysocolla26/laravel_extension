@@ -127,7 +127,7 @@
                     </thead>
                 </table>
 
-                <table class="table-data table-bordered table-striped table-hover" border="1" width="80%"></table>
+                <table class="table-data table-bordered table-striped table-hover" border="1" width="85%"></table>
 
                 <div class="table-search"></div>
 
