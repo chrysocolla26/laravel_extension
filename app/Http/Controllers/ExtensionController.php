@@ -65,12 +65,10 @@ class ExtensionController extends Controller
 	    $unit = $_GET['unit'];
 	    $group = $_GET['group'];
 
-	    $unit = str_replace("%2520", " ",$unit);
-
 	    if(empty($group))
-            DB::select('delete from '.$table.' where `Unit`='.$unit);
+            DB::select('delete from '.$table.' where `Unit`="'.urldecode($unit).'"');
 	    if(empty($unit))
-            DB::select('delete from '.$table.' where `Group`='.$group);
+            DB::select('delete from '.$table.' where `Group`="'.urldecode($group).'"');
 
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');

@@ -143,7 +143,7 @@ function showListExtension(data, table){
         if(i==0){
             if (data[i].Group != "") {
                 strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '';
-                strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + data[i].Group + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                 // strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
                 //strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                 strHTML += '</h5></th></tr></thead>';
@@ -157,15 +157,16 @@ function showListExtension(data, table){
             }
         }
     	if(i>0){
-            if (data[i].Group != data[i - 1].Group && data[i].Group != "")
+            if (data[i].Group != data[i - 1].Group && data[i].Group != ""){
                 strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '';
-                strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + data[i].Group + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                 // strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
                 //strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                 strHTML += '</h5></th></tr></thead>';
+            }
             if(data[i].Unit != data[i-1].Unit && data[i].Unit != "") {
                 strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '';
-                strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + data[i].Unit + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                 //strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.png" width="25px" height="auto"></a>';
                 // strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                 strHTML += '</h5></th></tr></thead>';
@@ -691,7 +692,6 @@ function showSearchExtension(name,data) {
     $(".table-info").hide();
     $(".table-data").html("");
     $(".table-search").html("");
-
 
     var strHTML = '';
     var rowspan = 1;
