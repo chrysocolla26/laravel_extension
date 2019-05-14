@@ -8,6 +8,7 @@ var chkFax = false;
 var chkFloor = false;
 var chkTower = false;
 var sessionLogin = false;
+var reorderFlag = false;
 
 function getSession() {
     $.ajax({
@@ -61,7 +62,29 @@ function showListTab(data){
 	$(".sidebar-menu ul").append(strHTML);
 }
 
+function reorderExtension(){
+    if(reorderFlag == false) {
+        $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='reorderExtension()'><span class='fas fa-users-cog'></span> ACTION</button>");
+        $(".action-head").hide();
+        $(".reorder-head").show();
+        $(".action-column").hide();
+        $(".reorder-column").show();
+        reorderFlag = true;
+    }
+    else {
+        $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='reorderExtension()'><span class='fas fa-bars'></span> REORDER</button>");
+        $(".action-head").show();
+        $(".reorder-head").hide();
+        $(".action-column").show();
+        $(".reorder-column").hide();
+        reorderFlag = false;
+    }
+}
+
 function showListExtension(data, table){
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='reorderExtension()'><span class='fas fa-bars'></span> REORDER</button>");
+    reorderFlag = false;
+
     var strHTML = "";
     var name = "";
     var rowspan = 1;
@@ -135,8 +158,10 @@ function showListExtension(data, table){
         strHTML += '<th>Floor</th>';
     if(chkTower)
         strHTML += '<th>Tower</th>';
-    if(sessionLogin)
-        strHTML += '<th width="100px">Action</th>';
+    if(sessionLogin) {
+        strHTML += '<th class="action-head" width="100px">Action</th>';
+        strHTML += '<th class="reorder-head" width="40px" style="display: none;">Reorder</th>';
+    }
     strHTML += '</tr></thead>';
 
     for(var i=0;i<data.length;i++){
@@ -217,9 +242,13 @@ function showListExtension(data, table){
                     strHTML += '<td>'+data[k].Tower+'</td>';
 
                 if(sessionLogin) {
-                    strHTML += '<td><a onclick=detailDeleteRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    strHTML += '<td class="action-column"><a onclick=detailDeleteRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '</td>';
+
+                    strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
                     strHTML += '</td>';
                 }
                 strHTML += '</tr>';
@@ -242,10 +271,14 @@ function showListExtension(data, table){
                 strHTML += '<td>'+data[i].Tower+'</td>';
 
             if(sessionLogin) {
-                strHTML += '<td><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                strHTML += '<td class="action-column"><a onclick=detailDeleteRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                 strHTML += '&nbsp;<a onclick=detailUpdateRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                 strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
-                strHTML += '</td>'
+                strHTML += '</td>';
+
+                strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
+                strHTML += '</td>';
             }
             strHTML += '</tr>';
     	}

@@ -44,7 +44,7 @@
                     @if(!Session::get('login'))
                     <div class="loginBtn" style="width: 100%" >
                         <a href="/login">
-                            <button type="button" class="btn btn-outline-light " style="width: 100%" ><span class="fas fa-user-shield"></span> Login Admin</button>
+                            <button type="button" class="btn btn-outline-light"><span class="fas fa-user-shield"></span> Login Admin</button>
                         </a>
                     </div>
                     @endif
@@ -132,6 +132,7 @@
                 <div class="table-search"></div>
 
             </div>
+            <div class="button-reorder"></div>
         </main>
         <!-- page-content" -->
         <div class="modal fade bd-example-modal-lg" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -167,8 +168,6 @@
     }
 }
 </script>
-
-
 
 <script type="text/javascript">
     $(document).ready(function(){
