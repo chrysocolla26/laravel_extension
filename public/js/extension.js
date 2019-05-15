@@ -147,8 +147,6 @@ function showListExtension(data, table){
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddFirstRow("' + name + '","' + data[i].id + '","' + table + '") style="float: right;"><img src="img/add-icon.png" width="25px" height="auto" >First Row</a>';
-                    //strHTML += '&nbsp;<a onclick=detailAddFirstRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/add-icon.png" width="25px"  height="auto"></a>';
-
                     strHTML += '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != "") {
@@ -156,8 +154,6 @@ function showListExtension(data, table){
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddFirstRow("' + name + '","' + data[i].id + '","' + table + '") style="float: right"><img src="img/add-icon.png" width="25px"  height="auto">First Row</a>';
-                    //strHTML += '&nbsp;<a onclick=detailAddFirstRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/add-icon.png" width="25px"  height="auto"></a>';
-
                     strHTML += '</h5></th></tr></thead>';
                 }
             }else{
@@ -177,7 +173,6 @@ function showListExtension(data, table){
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","","' + data[i].Group + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddFirstRow("' + name + '","' + data[i].id + '","' + table + '") style="float: right;"><img src="img/add-icon.png" width="25px" height="auto" >First Row</a>';
-
                     strHTML += '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
@@ -185,7 +180,6 @@ function showListExtension(data, table){
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","' + data[i].Unit + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddFirstRow("' + name + '","' + data[i].id + '","' + table + '") style="float: right;"><img src="img/add-icon.png" width="25px" height="auto" >First Row</a>';
-
                     strHTML += '</h5></th></tr></thead>';
                 }
             }else{
