@@ -170,11 +170,75 @@ class ExtensionController extends Controller
         ]);
     }
 
+    public function updateReorder(){
+        $data = "";
+        $id = (int)$_GET['id'];
+        $countRow = (int)$_GET['countRow'];
+        $idSwap = (int)$_GET['idSwap'];
+        $table = $_GET['table'];
+        $name = $_GET['name'];
+        $type = $_GET['type'];
+
+        if(empty($countRow)) {
+            DB::select('UPDATE '.$table.' SET id=9999 where id=' . $idSwap);
+            DB::select('UPDATE '.$table.' SET id=' . $idSwap . ' where id=' . $id);
+            DB::select('UPDATE '.$table.' set id=' . $id . ' where id=9999');
+        }
+        else{
+            $countSwapRow = 1;
+            $data = DB::select('select * from '.$table.' order by id ASC');
+
+            if($type == "down") {
+                for ($i = $data[$idSwap-1]->id - 1; $i < sizeof($data); $i++) {
+                    if ($data[$i]->Ext == $data[$i + 1]->Ext)
+                        $countSwapRow++;
+                    else
+                        break;
+                }
+
+                for ($i = ($data[$id - 1]->id) - $countRow; $i < $data[$id - 1]->id; $i++)
+                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + 999) . ' where id=' . $data[$i]->id);
+
+                for ($i = $data[$idSwap - 1]->id - 1; $i < ($data[$idSwap-1]->id - 1 + $countSwapRow); $i++)
+                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id - $countRow) . ' where id=' . $data[$i]->id);
+
+                for ($i = ($data[$id - 1]->id) - $countRow; $i < $data[$id - 1]->id; $i++)
+                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) + $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
+            }
+            else if($type == "up"){
+                for ($i = $data[$idSwap-1]->id - 1; $i > 0; $i--) {
+                    if ($data[$i]->Ext == $data[$i - 1]->Ext)
+                        $countSwapRow++;
+                    else
+                        break;
+                }
+
+                for ($i = ($data[$id - 1]->id) - 1; $i < ($data[$id - 1]->id - 1) + $countRow; $i++)
+                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + 999) . ' where id=' . $data[$i]->id);
+
+                for ($i = $data[$idSwap - 1]->id - $countSwapRow; $i < $data[$idSwap-1]->id; $i++)
+                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + $countRow) . ' where id=' . $data[$i]->id);
+
+                for ($i = ($data[$id - 1]->id) - 1; $i < ($data[$id - 1]->id - 1) + $countRow; $i++)
+                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) - $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
+            }
+        }
+
+        if(empty($name))
+            $data = DB::select('select * from '.$table.' order by id ASC');
+        else
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%"OR Unit LIKE "%'.$name.'%" order by Title asc');
+
+        return response([
+            'data' => $data
+        ]);
+    }
+
     public function searchExtension(){
 	    $data = [];
 	    $name = $_GET['name'];
 
-	    $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%"OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by Title asc');
+	    $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%"OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
 	    return response([
 	        'data' => $data,
@@ -184,7 +248,6 @@ class ExtensionController extends Controller
 
     public function checkLogin(Request $request)
     {
-
         $data = DB::table('user')->where('username', $request->username)->first();
 
         if($data!=null){

@@ -50,6 +50,7 @@ function showInfo(){
     $(".table-info").show();
     $(".table-data").html("");
     $(".table-search").html("");
+    $(".button-reorder").html("");
 }
 
 function showListTab(data){
@@ -62,29 +63,49 @@ function showListTab(data){
 	$(".sidebar-menu ul").append(strHTML);
 }
 
-function reorderExtension(){
-    if(reorderFlag == false) {
-        $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='reorderExtension()'><span class='fas fa-users-cog'></span> ACTION</button>");
-        $(".action-head").hide();
-        $(".reorder-head").show();
-        $(".action-column").hide();
-        $(".reorder-column").show();
-        reorderFlag = true;
-    }
-    else {
-        $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='reorderExtension()'><span class='fas fa-bars'></span> REORDER</button>");
-        $(".action-head").show();
-        $(".reorder-head").hide();
-        $(".action-column").show();
-        $(".reorder-column").hide();
-        reorderFlag = false;
-    }
+function showActionColumn(){
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showReorderColumn()'><span class='fas fa-bars'></span> REORDER</button>");
+    $(".action-head").show();
+    $(".reorder-head").hide();
+    $(".action-column").show();
+    $(".reorder-column").hide();
+    reorderFlag = false;
+}
+
+function showReorderColumn(){
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showActionColumn()'><span class='fas fa-users-cog'></span> ACTION</button>");
+    $(".action-head").hide();
+    $(".reorder-head").show();
+    $(".action-column").hide();
+    $(".reorder-column").show();
+    reorderFlag = true;
+}
+
+function reorderData(name, id, idSwap, countRow, table, type){
+    $.ajax({
+        type: "GET",
+        url: "/reorderUpdate",
+        dataType: "json",
+        data: {
+            name: name,
+            id: parseInt(id),
+            idSwap: parseInt(idSwap),
+            countRow: parseInt(countRow),
+            table: table,
+            type: type
+        },
+        success: function(response){
+            if(name == "") {
+                showListExtension(response.data, table);
+                showReorderColumn();
+            }
+            else
+                showSearchExtension(name,response.data);
+        }
+    });
 }
 
 function showListExtension(data, table){
-    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='reorderExtension()'><span class='fas fa-bars'></span> REORDER</button>");
-    reorderFlag = false;
-
     var strHTML = "";
     var name = "";
     var rowspan = 1;
@@ -218,9 +239,15 @@ function showListExtension(data, table){
         }
 
     	for(var j=i+1;j<data.length;j++){
-    		if(data[i].Ext == data[j].Ext)
-    			rowspan++;
-    		else
+    		if(data[i].Ext == data[j].Ext) {
+                if (data[i].Group != "" && data[i+1].Group != "") {
+                    if (data[i].Group == data[i+1].Group)
+                        rowspan++;
+                }else if (data[i].Unit != "" && data[i+1].Unit!= "") {
+                    if (data[i].Unit == data[i + 1].Unit)
+                        rowspan++;
+                }
+            }else
     			break;
     	}
     	if(rowspan > 1){
@@ -247,9 +274,40 @@ function showListExtension(data, table){
                     strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[k].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</td>';
 
-                    strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a>';
-                    strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
-                    strHTML += '</td>';
+                    if(k==i){
+                        if(data[k-1].Group != data[k].Group || data[k-1].Unit != data[k].Unit){
+                            //Data rowspan paling atas
+                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k+1].id + '","","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
+                        }
+                        else{
+                            //Data rowspan paling atas tapi tetap di Group dan Unit yang sama
+                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","' + rowspan + '","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                            strHTML += '&nbsp;<a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k+1].id + '","","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
+                            strHTML += '</td>';
+                        }
+                    }
+                    else if(k+1 < i+rowspan){
+                        //Data rowspan ditengah
+                        strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                        strHTML += '&nbsp;<a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k+1].id + '","","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
+                        strHTML += '</td>';
+                    }
+                    else if(k+1 != data.length){
+                        if(data[k+1].Group != data[k].Group || data[k+1].Unit != data[k].Unit){
+                            //Data rowspan paling bawah
+                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
+                        }
+                        else {
+                            //Data rowspan paling bawah tapi tetap di Group dan Unit yang sama
+                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                            strHTML += '&nbsp;<a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k+1].id + '","' + rowspan + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
+                            strHTML += '</td>';
+                        }
+                    }
+                    else{
+                        //Data rowspan paling bawah dan data terakhir
+                        strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
+                    }
                 }
                 strHTML += '</tr>';
     		}
@@ -276,9 +334,33 @@ function showListExtension(data, table){
                 strHTML += '&nbsp;<a onclick=detailAddRow("' + name + '","' + data[i].id + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                 strHTML += '</td>';
 
-                strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a>';
-                strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
-                strHTML += '</td>';
+                if(i==0){
+                    if(data[i+1].Group != data[i].Group || data[i+1].Unit != data[i].Unit){
+                        strHTML += '<td class="reorder-column" style="display: none;"></td>';
+                    }
+                    else {
+                        strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
+                    }
+                }
+                else if(i+1 == data.length){
+                    strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
+                }
+                else{
+                    if(data[i+1].Group != data[i].Group || data[i+1].Unit != data[i].Unit){
+                        if(data[i-1].Group != data[i].Group || data[i-1].Unit != data[i].Unit)
+                            strHTML += '<td class="reorder-column" style="display: none;"></td>';
+                        else
+                            strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
+                    }
+                    else if(data[i-1].Group != data[i].Group || data[i-1].Unit != data[i].Unit){
+                        strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
+                    }
+                    else {
+                        strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                        strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
+                        strHTML += '</td>';
+                    }
+                }
             }
             strHTML += '</tr>';
     	}
@@ -286,6 +368,13 @@ function showListExtension(data, table){
 
     strHTML += '</tbody>';
 	$(".table-data").append(strHTML);
+
+	if(sessionLogin) {
+        if (!reorderFlag)
+            showActionColumn();
+        else
+            showReorderColumn();
+    }
 }
 
 function detailDeleteRow(name, id, table){
@@ -993,9 +1082,15 @@ function showSearchExtension(name,data) {
             }
 
             for(var j=i+1;j<data.length;j++){
-                if(data[i].Ext == data[j].Ext)
-                    rowspan++;
-                else
+                if(data[i].Ext == data[j].Ext) {
+                    if (data[i].Group != "" && data[i+1].Group != "") {
+                        if (data[i].Group == data[i+1].Group)
+                            rowspan++;
+                    }else if (data[i].Unit != "" && data[i+1].Unit!= "") {
+                        if (data[i].Unit == data[i + 1].Unit)
+                            rowspan++;
+                    }
+                }else
                     break;
             }
             if(rowspan > 1){

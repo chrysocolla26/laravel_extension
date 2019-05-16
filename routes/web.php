@@ -22,7 +22,11 @@ Route::get('/deleteGroupExt','ExtensionController@deleteGroupExt');
 Route::get('/updateExt','ExtensionController@updateRow');
 Route::get('/updateGroupExt','ExtensionController@updateGroupExt');
 Route::get('/addExt','ExtensionController@addRow');
+
+Route::get('/reorderUpdate','ExtensionController@updateReorder');
+
 Route::get('/showSearch','ExtensionController@searchExtension');
+
 Route::get('/getSessionLogin','ExtensionController@getSessionLogin');
 
 Route::get('/login',function (){
