@@ -197,10 +197,12 @@ class ExtensionController extends Controller
             //Reorder data rowspan ($id and %idSwap become index of data)
             if($type == "down") {
                 for ($i = $idSwap; $i < sizeof($data); $i++) {
-                    if ($data[$i]->Ext == $data[$i + 1]->Ext)
-                        $countSwapRow++;
-                    else
-                        break;
+                    if($i + 1 < sizeof($data)) {
+                        if ($data[$i]->Ext == $data[$i + 1]->Ext)
+                            $countSwapRow++;
+                        else
+                            break;
+                    }
                 }
 
                 DB::select('UPDATE '.$table.' SET id = id + 999 WHERE id >= '.$data[$id-$countRow+1]->id.' AND id <= '.$data[$id]->id.' order by id DESC');
@@ -225,7 +227,7 @@ class ExtensionController extends Controller
 //                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) + $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
             }
             else if($type == "up"){
-                for ($i = $idSwap; $i >= 0; $i--) {
+                for ($i = $idSwap; $i > 0; $i--) {
                     if ($data[$i]->Ext == $data[$i - 1]->Ext)
                         $countSwapRow++;
                     else
