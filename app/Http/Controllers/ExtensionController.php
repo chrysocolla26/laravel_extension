@@ -49,6 +49,8 @@ class ExtensionController extends Controller
 
         DB::select('delete from '.$table.' where id='.$id);
 
+        DB::select('UPDATE '.$table.' SET id = id - 1 WHERE id > '.$id.' order by id DESC');
+
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
@@ -188,39 +190,68 @@ class ExtensionController extends Controller
             $countSwapRow = 1;
             $data = DB::select('select * from '.$table.' order by id ASC');
 
+//            dd($id. ' ' . $idSwap . ' ' .$countRow);
+//            dd($data[$id]->id . ' ' . $countRow . ' ' . $data[$id-$countRow+1]->id);
+//            dd($data[$idSwap]->id);
+
+            //Reorder data rowspan ($id and %idSwap become index of data)
             if($type == "down") {
-                for ($i = $data[$idSwap-1]->id - 1; $i < sizeof($data); $i++) {
+                for ($i = $idSwap; $i < sizeof($data); $i++) {
                     if ($data[$i]->Ext == $data[$i + 1]->Ext)
                         $countSwapRow++;
                     else
                         break;
                 }
 
-                for ($i = ($data[$id - 1]->id) - $countRow; $i < $data[$id - 1]->id; $i++)
-                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + 999) . ' where id=' . $data[$i]->id);
+                DB::select('UPDATE '.$table.' SET id = id + 999 WHERE id >= '.$data[$id-$countRow+1]->id.' AND id <= '.$data[$id]->id.' order by id DESC');
+                DB::select('UPDATE '.$table.' SET id = id - '.$countRow.'  WHERE id >= '.$data[$idSwap]->id.' AND id <= '.$data[$idSwap+$countSwapRow-1]->id.' order by id DESC');
+                DB::select('UPDATE '.$table.' SET id = ((id - 999) + '. $countSwapRow .' ) WHERE id >= '. ($data[$id-$countRow+1]->id + 999).' AND id <= '. ($data[$id]->id + 999) .' order by id DESC');
 
-                for ($i = $data[$idSwap - 1]->id - 1; $i < ($data[$idSwap-1]->id - 1 + $countSwapRow); $i++)
-                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id - $countRow) . ' where id=' . $data[$i]->id);
+                //Old code update with iteration
+//                for ($i = $data[$idSwap-1]->id - 1; $i < sizeof($data); $i++) {
+//                    if ($data[$i]->Ext == $data[$i + 1]->Ext)
+//                        $countSwapRow++;
+//                    else
+//                        break;
+//                }
 
-                for ($i = ($data[$id - 1]->id) - $countRow; $i < $data[$id - 1]->id; $i++)
-                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) + $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
+//                for ($i = ($data[$id - 1]->id) - $countRow; $i < $data[$id - 1]->id; $i++)
+//                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + 999) . ' where id=' . $data[$i]->id);
+//
+//                for ($i = $data[$idSwap - 1]->id - 1; $i < ($data[$idSwap-1]->id - 1 + $countSwapRow); $i++)
+//                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id - $countRow) . ' where id=' . $data[$i]->id);
+//
+//                for ($i = ($data[$id - 1]->id) - $countRow; $i < $data[$id - 1]->id; $i++)
+//                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) + $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
             }
             else if($type == "up"){
-                for ($i = $data[$idSwap-1]->id - 1; $i > 0; $i--) {
+                for ($i = $idSwap; $i >= 0; $i--) {
                     if ($data[$i]->Ext == $data[$i - 1]->Ext)
                         $countSwapRow++;
                     else
                         break;
                 }
 
-                for ($i = ($data[$id - 1]->id) - 1; $i < ($data[$id - 1]->id - 1) + $countRow; $i++)
-                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + 999) . ' where id=' . $data[$i]->id);
+                DB::select('UPDATE ' . $table . ' SET id = id + 999 WHERE id >=' . $data[$id]->id . ' AND id <= '. $data[$id+$countRow-1]->id.' order by id DESC');
+                DB::select('UPDATE ' . $table . ' SET id = id + ' . $countRow . ' WHERE id >=' . $data[$idSwap-$countSwapRow+1]->id . ' AND id <= '. $data[$idSwap]->id.' order by id DESC');
+                DB::select('UPDATE ' . $table . ' SET id = ((id - 999) - ' . $countSwapRow . ') WHERE id >=' . ($data[$id]->id + 999) . ' AND id <= '. ($data[$id+$countRow-1]->id + 999).' order by id DESC');
 
-                for ($i = $data[$idSwap - 1]->id - $countSwapRow; $i < $data[$idSwap-1]->id; $i++)
-                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + $countRow) . ' where id=' . $data[$i]->id);
-
-                for ($i = ($data[$id - 1]->id) - 1; $i < ($data[$id - 1]->id - 1) + $countRow; $i++)
-                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) - $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
+                //Old code update with iteration
+//                for ($i = $data[$idSwap-1]->id - 1; $i > 0; $i--) {
+//                    if ($data[$i]->Ext == $data[$i - 1]->Ext)
+//                        $countSwapRow++;
+//                    else
+//                        break;
+//                }
+//
+//                for ($i = ($data[$id - 1]->id) - 1; $i < ($data[$id - 1]->id - 1) + $countRow; $i++)
+//                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + 999) . ' where id=' . $data[$i]->id);
+//
+//                for ($i = $data[$idSwap - 1]->id - $countSwapRow; $i < $data[$idSwap-1]->id; $i++)
+//                    DB::select('UPDATE ' . $table . ' SET id=' . ($data[$i]->id + $countRow) . ' where id=' . $data[$i]->id);
+//
+//                for ($i = ($data[$id - 1]->id) - 1; $i < ($data[$id - 1]->id - 1) + $countRow; $i++)
+//                    DB::select('UPDATE ' . $table . ' SET id=' . ((($data[$i]->id + 999) - 999) - $countSwapRow) . ' where id=' . ($data[$i]->id + 999));
             }
         }
 

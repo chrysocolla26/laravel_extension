@@ -281,7 +281,7 @@ function showListExtension(data, table){
                         }
                         else{
                             //Data rowspan paling atas tapi tetap di Group dan Unit yang sama
-                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","' + rowspan + '","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + k + '","' + (k-1) + '","' + rowspan + '","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
                             strHTML += '&nbsp;<a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k+1].id + '","","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
                             strHTML += '</td>';
                         }
@@ -300,7 +300,7 @@ function showListExtension(data, table){
                         else {
                             //Data rowspan paling bawah tapi tetap di Group dan Unit yang sama
                             strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
-                            strHTML += '&nbsp;<a onclick=reorderData("' + name + '","' + data[k].id + '","' + data[k+1].id + '","' + rowspan + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
+                            strHTML += '&nbsp;<a onclick=reorderData("' + name + '","' + k + '","' + (k+1) + '","' + rowspan + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a>';
                             strHTML += '</td>';
                         }
                     }
