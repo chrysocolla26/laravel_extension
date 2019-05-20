@@ -251,6 +251,7 @@ function showListExtension(data, table){
     			break;
     	}
     	if(rowspan > 1){
+            // Data rowspan
     		for(var k=i;k<i+rowspan;k++){
                 strHTML += '<tr>';
                 strHTML += '<td>'+data[k].Name+'</td>';
@@ -314,6 +315,7 @@ function showListExtension(data, table){
     		i = i+rowspan-1;
     		rowspan = 1;
     	}else {
+            //Data tidak rowspan (Single Data)
             strHTML += '<tr>';
             strHTML += '<td>'+data[i].Name+'</td>';
             if(chkPost)
@@ -339,21 +341,25 @@ function showListExtension(data, table){
                         strHTML += '<td class="reorder-column" style="display: none;"></td>';
                     }
                     else {
-                        strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
+                        //Data paling pertama
+                        strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[i].id + '","' + data[i+1].id + '","","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
                     }
                 }
                 else if(i+1 == data.length){
-                    strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
+                    //Data paling terakhir
+                    strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[i].id + '","' + data[i-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
                 }
                 else{
                     if(data[i+1].Group != data[i].Group || data[i+1].Unit != data[i].Unit){
                         if(data[i-1].Group != data[i].Group || data[i-1].Unit != data[i].Unit)
                             strHTML += '<td class="reorder-column" style="display: none;"></td>';
                         else
-                            strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
+                            //Data terakhir untuk setiap Group atau Unit dan bukan data paling terakhir
+                            strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[i].id + '","' + data[i-1].id + '","","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a></td>';
                     }
                     else if(data[i-1].Group != data[i].Group || data[i-1].Unit != data[i].Unit){
-                        strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
+                        //Data pertama untuk setiap Group atau Unit dan bukan data paling pertama
+                        strHTML += '<td class="reorder-column" style="display: none;"><a onclick=reorderData("' + name + '","' + data[i].id + '","' + data[i+1].id + '","","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto" style="float: right;"></a></td>';
                     }
                     else {
                         strHTML += '<td class="reorder-column" style="display: none;"><a><img src="img/up-icon.png" width="25px" height="auto"></a>';
