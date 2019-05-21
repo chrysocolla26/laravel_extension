@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta id="css-theme" content="edu">
-    <title>Extension Bina Nusantara</title>
+    <title>Login</title>
 
     <!-- favicon -->
     <link rel="icon" type="image/png" href="favicon.png">

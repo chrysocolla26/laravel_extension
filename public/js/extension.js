@@ -192,12 +192,14 @@ function showListExtension(data, table){
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a onclick=detailAddGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != "") {
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a onclick=detailAddGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</h5></th></tr></thead>';
                 }
             }else{
@@ -216,12 +218,14 @@ function showListExtension(data, table){
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '"><h5>' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a onclick=detailAddGroup("' + name + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
                     strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
+                    strHTML += '&nbsp;<a onclick=detailAddGroup("' + name + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</h5></th></tr></thead>';
                 }
             }else{
@@ -716,6 +720,46 @@ function detailAddRow(name, id, table){
             $('#modal-action').modal('show');
         }
     });
+}
+
+function detailAddGroup(name, unit, group, table){
+    var singleData = [];
+    var strBody = "";
+    var strFooter = "";
+
+    $('.modal-dialog').removeClass("modal-lg");
+    $('#modal-title').html("<h4>Add this extension?</h4>");
+
+    if(group != "")
+        strBody += '<strong><h6>Add data in ('+decodeURIComponent(group)+') ?</h6></strong><br>';
+    if(unit != "")
+        strBody += '<strong><h6>Add data in ('+decodeURIComponent(unit)+') ?</h6></strong><br>';
+
+    strBody += '<strong><h6>New Data:</h6></strong><br>';
+    strBody += '<strong>Name : </strong><input type="text" name="name" class="form-control" value="" required><br>';
+    strBody += '<strong>Extension : </strong><input type="text" min="1" name="extension" class="form-control" value="" required><br>';
+    if (group != "" && chkGroup)
+        strBody += '<strong>Group : </strong><input type="text" name="group" class="form-control" value="' + decodeURIComponent(group) + '" required><br>';
+    if (unit != "" && chkUnit)
+        strBody += '<strong>Unit : </strong><input type="text" name="unit" class="form-control" value="'+decodeURIComponent(unit)+'" required><br>';
+    if (chkPost)
+        strBody += '<strong>Position : </strong><input type="text" name="position" class="form-control" value="" required><br>';
+    if (chkDID)
+        strBody += '<strong>DID : </strong><input type="number" min="1" name="did" class="form-control" value=""><br>';
+    if (chkPhone)
+        strBody += '<strong>Phone: </strong><input type="number" min="1" name="phone" class="form-control" value=""><br>';
+    if (chkFloor)
+        strBody += '<strong>Floor: </strong><input type="number" min="1" name="floor" class="form-control" value=""><br>';
+    if (chkTower)
+        strBody += '<strong>Tower: </strong><input type="text" name="tower" class="form-control" value="" required><br>';
+
+    $('.modal-body').html(strBody)
+
+    strFooter += '<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>';
+    // strFooter += '<button type="button" class="btn btn-primary" onclick=addData("'+name+'","'+id+'","'+table+'")>Add</button>';
+    $('.modal-footer').html(strFooter);
+
+    $('#modal-action').modal('show');
 }
 
 function deleteData(name, id, table){
