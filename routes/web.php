@@ -22,6 +22,7 @@ Route::get('/deleteGroupExt','ExtensionController@deleteGroupExt');
 Route::get('/updateExt','ExtensionController@updateRow');
 Route::get('/updateGroupExt','ExtensionController@updateGroupExt');
 Route::get('/addExt','ExtensionController@addRow');
+Route::get('/addGroupExt','ExtensionController@addGroupExt');
 
 Route::get('/reorderUpdate','ExtensionController@updateReorder');
 
