@@ -56,9 +56,11 @@ function showInfo(){
 function showListTab(data){
 	var strHTML = "";
 
-	for(var i=0;i<data.length;i++){
+    if(sessionLogin)
+        strHTML += "<li class='sidebar-dropdown'><a href='javascript:;' onclick=addSite()>Add New Site&nbsp;&nbsp;&nbsp;<h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
+
+	for(var i=0;i<data.length;i++)
 		strHTML += "<li class='sidebar-dropdown' id='"+data[i].TableName+"'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text'>"+data[i].TabName+"</span></a></li>";
-	}
 
 	$(".sidebar-menu ul").append(strHTML);
 }
@@ -731,7 +733,7 @@ function detailAddRow(name, id, table){
             $('.modal-body').html(strBody)
 
             strFooter += '<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>';
-            strFooter += '<button type="button" class="btn btn-primary" onclick=addData("'+name+'","'+id+'","'+table+'")>Add</button>';
+            strFooter += '<button type="button" class="btn btn-success" onclick=addData("'+name+'","'+id+'","'+table+'")>Add</button>';
             $('.modal-footer').html(strFooter);
 
             $('#modal-action').modal('show');
@@ -773,7 +775,7 @@ function detailAddGroup(name, id, unit, group, table){
     $('.modal-body').html(strBody)
 
     strFooter += '<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>';
-    strFooter += '<button type="button" class="btn btn-primary" onclick=addGroup("'+name+'",'+id+',"'+unit+'","'+group+'","'+table+'")>Add</button>';
+    strFooter += '<button type="button" class="btn btn-success" onclick=addGroup("'+name+'",'+id+',"'+unit+'","'+group+'","'+table+'")>Add</button>';
     $('.modal-footer').html(strFooter);
 
     $('#modal-action').modal('show');
@@ -1115,7 +1117,7 @@ function showSearchExtension(name,data) {
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                         strHTML += '</th>';
-                        strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
+                        // strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
                         strHTML += '</tr></thead>';
                     }
                     if (data[i].Unit != "") {
@@ -1125,7 +1127,7 @@ function showSearchExtension(name,data) {
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                         strHTML += '</th>';
-                        strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
+                        // strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
                         strHTML += '</tr></thead>';
                     }
                 }else{
@@ -1155,7 +1157,7 @@ function showSearchExtension(name,data) {
                     strHTML += '<th>Tower</th>';
                 if(sessionLogin) {
                     strHTML += '<th class="action-head" width="100px">Action</th>';
-                    strHTML += '<th class="reorder-head" width="40px" style="display: none;">Reorder</th>';
+                    // strHTML += '<th class="reorder-head" width="40px" style="display: none;">Reorder</th>';
                 }
                 strHTML += '</tr></thead>';
             }
@@ -1182,7 +1184,7 @@ function showSearchExtension(name,data) {
                         strHTML += '<th>Tower</th>';
                     if(sessionLogin) {
                         strHTML += '<th class="action-head" width="100px">Action</th>';
-                        strHTML += '<th class="reorder-head" width="40px" style="display: none;">Reorder</th>';
+                        // strHTML += '<th class="reorder-head" width="40px" style="display: none;">Reorder</th>';
                     }
                     strHTML += '</tr></thead>';
                 }
@@ -1194,7 +1196,7 @@ function showSearchExtension(name,data) {
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                         strHTML += '</th>';
-                        strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
+                        // strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
                         strHTML += '</tr></thead>';
                     }
                     if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
@@ -1204,7 +1206,7 @@ function showSearchExtension(name,data) {
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                         strHTML += '</th>';
-                        strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
+                        // strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
                         strHTML += '</tr></thead>';
                     }
                 }else{
@@ -1289,10 +1291,10 @@ function showSearchExtension(name,data) {
     }
     $(".table-search").append(strHTML);
 
-    if(sessionLogin) {
-        if (!reorderFlag)
-            showActionColumn();
-        else
-            showReorderColumn();
-    }
+    // if(sessionLogin) {
+    //     if (!reorderFlag)
+    //         showActionColumn();
+    //     else
+    //         showReorderColumn();
+    // }
 }
