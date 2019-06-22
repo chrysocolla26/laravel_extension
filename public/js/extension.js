@@ -56,11 +56,13 @@ function showInfo(){
 function showListTab(data){
 	var strHTML = "";
 
+    $('.site-tab').remove();
+
     if(sessionLogin)
-        strHTML += "<li class='sidebar-dropdown'><a href='javascript:;' onclick=addSite()>Add New Site&nbsp;&nbsp;&nbsp;<h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
+        strHTML += "<li class='sidebar-dropdown site-tab'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")>Add New Site&nbsp;&nbsp;&nbsp;<h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
 
 	for(var i=0;i<data.length;i++)
-		strHTML += "<li class='sidebar-dropdown' id='"+data[i].TableName+"'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text'>"+data[i].TabName+"</span></a></li>";
+		strHTML += "<li class='sidebar-dropdown site-tab' id='"+data[i].TableName+"'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text'>"+data[i].TabName+"</span></a></li>";
 
 	$(".sidebar-menu ul").append(strHTML);
 }
@@ -183,7 +185,7 @@ function showListExtension(data, table){
         strHTML += '<th>Tower</th>';
     if(sessionLogin) {
         strHTML += '<th class="action-head" width="100px">Action</th>';
-        strHTML += '<th class="reorder-head" width="40px" style="display: none;">Reorder</th>';
+        strHTML += '<th class="reorder-head" width="70px" style="display: none; padding: 0; margin: 0;">Reorder</th>';
     }
     strHTML += '</tr></thead>';
 
@@ -253,17 +255,17 @@ function showListExtension(data, table){
         }
 
     	for(var j=i+1;j<data.length;j++){
-    		if(data[i].Ext == data[j].Ext) {
-                if (data[i].Group != "" && data[i+1].Group != "") {
-                    if (data[i].Group == data[i+1].Group)
+            if(data[i].Ext == data[j].Ext && data[i].Unit == data[j].Unit && data[i].Group == data[j].Group) {
+                if (data[i].Group != "" && data[j].Group != "") {
+                    if (data[i].Group == data[j].Group)
                         rowspan++;
-                }else if (data[i].Unit != "" && data[i+1].Unit!= "") {
-                    if (data[i].Unit == data[i + 1].Unit)
+                }else if (data[i].Unit != "" && data[j].Unit!= "") {
+                    if (data[i].Unit == data[j].Unit)
                         rowspan++;
                 }
             }else
-    			break;
-    	}
+                break;
+        }
     	if(rowspan > 1){
             // Data rowspan
     		for(var k=i;k<i+rowspan;k++){
@@ -678,6 +680,26 @@ function detailUpdateGroup(name, unit, group, table){
     $('#modal-action').modal('show');
 }
 
+function detailAddSite(id){
+    var strBody = "";
+    var strFooter = "";
+
+    $('.modal-dialog').removeClass("modal-lg");
+    $('#modal-title').html("<h4>Add new Site?</h4>");
+
+    strBody += '<strong><h6>New Site:</h6></strong><br>';
+
+    strBody += '<strong>Site Name: <input type="text" name="site-name" class="form-control" value="" required></strong><br>';
+
+    $('.modal-body').html(strBody)
+
+    strFooter += '<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>';
+    strFooter += '<button type="button" class="btn btn-success" onclick=addSite('+id+')>Add Site</button>';
+    $('.modal-footer').html(strFooter);
+
+    $('#modal-action').modal('show');
+}
+
 function detailAddRow(name, id, table){
     var singleData = [];
     var strBody = "";
@@ -788,6 +810,7 @@ function deleteData(name, id, table){
         dataType: "json",
         data: {name:name,id:id,table:table},
         success: function(response){
+            console.log(response.data);
             if(name == "")
                 showListExtension(response.data, table);
             else
@@ -904,6 +927,32 @@ function updateGroup(name, unit, group, table){
                 else
                     showSearchExtension(name, response.data);
             }
+        });
+    }
+}
+
+function addSite(id){
+    var siteInput = ($("input[name=site-name]").val()!=undefined) ? $("input[name=site-name]").val() : "";
+
+    if(siteInput == ""){
+        Swal.fire({
+            type: 'error',
+            text: 'Nama site harus diisi',
+            confirmButtonColor: '#762F8D',
+        })
+    }else{
+        $.ajax({
+            type: "GET",
+            url: "/addSite",
+            dataType: "json",
+            data: {
+                id: id,
+                siteInput: siteInput,
+            },
+            success: function (response) {
+                $('#modal-action').modal('hide');
+                getListTabExtension();
+            },
         });
     }
 }
@@ -1220,12 +1269,12 @@ function showSearchExtension(name,data) {
             }
 
             for(var j=i+1;j<data.length;j++){
-                if(data[i].Ext == data[j].Ext) {
-                    if (data[i].Group != "" && data[i+1].Group != "") {
-                        if (data[i].Group == data[i+1].Group)
+                if(data[i].Ext == data[j].Ext && data[i].Unit == data[j].Unit && data[i].Group == data[j].Group) {
+                    if (data[i].Group != "" && data[j].Group != "") {
+                        if (data[i].Group == data[j].Group)
                             rowspan++;
-                    }else if (data[i].Unit != "" && data[i+1].Unit!= "") {
-                        if (data[i].Unit == data[i + 1].Unit)
+                    }else if (data[i].Unit != "" && data[j].Unit!= "") {
+                        if (data[i].Unit == data[j].Unit)
                             rowspan++;
                     }
                 }else

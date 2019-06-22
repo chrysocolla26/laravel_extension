@@ -51,7 +51,7 @@ class ExtensionController extends Controller
 
         DB::select('delete from '.$table.' where id='.$id);
 
-        DB::select('UPDATE '.$table.' SET id = id - 1 WHERE id > '.$id.' order by id DESC');
+        DB::select('UPDATE '.$table.' SET id = id - 1 WHERE id > '.$id.' order by id ASC');
 
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
@@ -141,6 +141,19 @@ class ExtensionController extends Controller
         return response([
             'data' => $data
         ]);
+    }
+
+    public function addRowSite(){
+        $id = (int)$_GET['id'];
+        $siteInput = $_GET['siteInput'];
+
+        DB::select('UPDATE list_tab SET id = id + 1 WHERE id >= '.$id.' order by id DESC');
+
+        // DB::select('UPDATE list_tab SET id = id - 2 WHERE id >= '.$id.' order by id ASC');
+
+        DB::select('INSERT INTO list_tab (id,TableName,TabName) VALUES ('.$id.',"'.$siteInput.'","'.$siteInput.'")');
+
+        return response([]);
     }
 
     public function addRow(){
