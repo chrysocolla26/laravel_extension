@@ -520,3 +520,29 @@ a{
 body, #modal-action{
   font-size: 13px;
 }
+
+.sidebar-menu li{
+  transition: 0.3s;
+}
+
+.sidebar-menu li:hover{
+  background: #f8f9fa;
+  border-radius: 1px;
+}
+
+.sidebar-menu .active{
+  background: #f8f9fa;
+  border-radius: 1px;
+}
+
+.sidebar-menu .active span{
+  color: black;
+}
+
+.sidebar-menu a:hover>span{
+  color: black;
+}
+
+.sidebar-menu a:hover span{
+  color: black;
+}

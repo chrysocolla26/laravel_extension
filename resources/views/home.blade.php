@@ -73,7 +73,7 @@
                 <div class="sidebar-item sidebar-search">
                     <div>
                         <div class="input-group">
-                            <input type="text" class="form-control search-menu" onkeydown="searchExtension(event.keyCode)" placeholder="Search..." >
+                            <input type="text" class="form-control search-menu" onkeydown="searchExtension(event.keyCode)" placeholder="Search name, division..." >
                             <div class="input-group-append" onclick="searchExtension('13')">
                                 <span class="input-group-text">
                                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -85,9 +85,9 @@
                 <!-- sidebar-menu  -->
                 <div class="sidebar-item sidebar-menu">
                     <ul>
-                        <li class="sidebar-dropdown">
+                        <li class="sidebar-dropdown active" style="padding: 0px;">
                             <a href="javascript:;" onclick="showInfo()">
-                                <span class="menu-text">Info</span>
+                                <span class="menu-text" style="padding-top:20px;padding-bottom:20px;padding-left: 5px;">Info</span>
                             </a>
                         </li>
                     </ul>

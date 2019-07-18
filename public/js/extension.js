@@ -10,6 +10,12 @@ var chkTower = false;
 var sessionLogin = false;
 var reorderFlag = false;
 
+$(document).ready(function(){
+    $('#modal-action').on('hidden.bs.modal', function (e) {
+      $(".add-site").removeClass("active");
+    })
+});
+
 function getSession() {
     $.ajax({
         type: "GET",
@@ -34,6 +40,8 @@ function getListTabExtension(){
 }
 
 function getListExtension(table){
+    $(".sidebar-menu li").removeClass("active");
+    $("#"+table+"").addClass("active");
 	$.ajax({
         type: "GET",
         url: "/getListExtension",
@@ -59,10 +67,10 @@ function showListTab(data){
     $('.site-tab').remove();
 
     if(sessionLogin)
-        strHTML += "<li class='sidebar-dropdown site-tab'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")>Add New Site&nbsp;&nbsp;&nbsp;<h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
+        strHTML += "<li class='sidebar-dropdown site-tab add-site' style='padding:0;'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")><span style='padding-top:20px;padding-bottom:20px;padding-left:5px;'>Add New Site&nbsp;&nbsp;</span><h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
 
 	for(var i=0;i<data.length;i++)
-		strHTML += "<li class='sidebar-dropdown site-tab' id='"+data[i].TableName+"'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text'>"+data[i].TabName+"</span></a></li>";
+		strHTML += "<li class='sidebar-dropdown site-tab' id='"+data[i].TableName+"' style='padding:0;'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text' style='padding-top:20px;padding-bottom:20px;padding-left:5px;'>"+data[i].TabName+"</span></a></li>";
 
 	$(".sidebar-menu ul").append(strHTML);
 }
@@ -681,6 +689,7 @@ function detailUpdateGroup(name, unit, group, table){
 }
 
 function detailAddSite(id){
+    $(".add-site").addClass("active");
     var strBody = "";
     var strFooter = "";
 
@@ -736,7 +745,7 @@ function detailAddRow(name, id, table){
 
             strBody += '<strong><h6>New Data:</h6></strong><br>';
             strBody += '<strong>Name : </strong><input type="text" name="name" class="form-control" value="" required><br>';
-            strBody += '<strong>Extension : </strong><input type="text" min="1" name="extension" class="form-control" value="" required><br>';
+            strBody += '<strong>Extension : </strong><input type="text" min="1" name="extension" class="form-control" value="' + singleData.Ext + '" required><br>';
             if (singleData.Group != "" || chkGroup)
                 strBody += '<strong>Group : </strong><input type="text" name="group" class="form-control" value="' + singleData.Group + '" required><br>';
             if (singleData.Unit != "" || chkUnit)
@@ -810,7 +819,6 @@ function deleteData(name, id, table){
         dataType: "json",
         data: {name:name,id:id,table:table},
         success: function(response){
-            console.log(response.data);
             if(name == "")
                 showListExtension(response.data, table);
             else
@@ -933,6 +941,8 @@ function updateGroup(name, unit, group, table){
 
 function addSite(id){
     var siteInput = ($("input[name=site-name]").val()!=undefined) ? $("input[name=site-name]").val() : "";
+    siteInput = siteInput.replace(/[^A-Z0-9]/ig, "_");
+    siteInput = siteInput.toLowerCase();
 
     if(siteInput == ""){
         Swal.fire({
@@ -1080,7 +1090,6 @@ function searchExtension(code){
             dataType: "json",
             data: {name: name},
             success: function (response) {
-                console.log(response.data);
                 if(response.data.length==0){
                     Swal.fire({
                         type: 'error',
