@@ -312,7 +312,7 @@ class ExtensionController extends Controller
                 return redirect('/login')->with("alert","Invalid Password");
             }
         }else{
-            return redirect('/login')->with("alert","Invalid Email");
+            return redirect('/login')->with("alert","Invalid Username / Password");
         }
     }
 

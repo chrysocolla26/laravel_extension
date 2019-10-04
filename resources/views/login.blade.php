@@ -35,7 +35,7 @@
                         <span class="ribbon"></span>
                         <div class="logo" >
                             <a class="site-name">
-                                <img src="img/logo-binus-portal.png" alt="Logo" style="height: 70px;width: 150px">
+                                <img src="img/binus-logo-lg.png" alt="Logo" style="height: 80px;width: auto;">
                             </a>
                             <span class="site-description">People Innovation Excellence</span>
                         </div>
@@ -88,7 +88,7 @@
                     </section>
                     <footer class="footer">
                         <div class="usefull-links" align="center">
-                            <td>Copyright ©2019 BINA NUSANTARA. All rights reserved</td>
+                            <span style="font-size: 12px;">Copyright ©2019 BINA NUSANTARA. All rights reserved</span>
                         </div>
                     </footer>
                     <div id="sms_getCodeBtn" style="display: none;"></div>
