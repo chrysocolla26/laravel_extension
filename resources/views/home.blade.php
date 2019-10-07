@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar-themes.css')}}">
-    <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.ico')}}" />
+    <link rel="shortcut icon" type="image/png" href="{{asset('img/icon.png')}}" />
 
     {{--Swall Fire--}}
     {{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>--}}
@@ -104,10 +104,10 @@
             <div id="overlay" class="overlay"></div>
             <div class="container-fluid p-5 syahdanImage">
                 <div class="row">
-                    <img id="syahdanImage" src="img/syahdan.jpg" class="mx-auto d-block">
+                    <img id="syahdanImage" src="img/syahdan.jpg" class="w-100">
                 </div>
             </div>
-            <div class="table-ext container-fluid p-5" align="center">
+            <div class="table-ext container-fluid p-4" align="center">
 
                 <table class="table table-info">
                     <thead>

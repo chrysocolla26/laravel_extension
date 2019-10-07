@@ -202,7 +202,7 @@ function showListExtension(data, table){
             if(sessionLogin) {
                 if (data[i].Group != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
-                    strHTML += '<th class="action-column" colspan="' + colspan + '">' + data[i].Group + '';
+                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
@@ -212,7 +212,7 @@ function showListExtension(data, table){
                 }
                 if (data[i].Unit != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
-                    strHTML += '<th class="action-column" colspan="' + colspan + '">' + data[i].Unit + '';
+                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
