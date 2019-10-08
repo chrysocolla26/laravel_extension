@@ -2,7 +2,6 @@ jQuery(function ($) {
 
     // Dropdown menu
     $(".sidebar-dropdown > a").click(function () {
-        showExt($(this).text());
         $(".sidebar-submenu").slideUp(200);
         if ($(this).parent().hasClass("active")) {
             $(".sidebar-dropdown").removeClass("active");
