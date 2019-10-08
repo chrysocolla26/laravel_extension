@@ -36,19 +36,22 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand" style="margin: 20px">
+                    <img src="{{asset('img/syahdan.png')}}" width="200px">
+                </div>
                 <div class="sidebar-item sidebar-brand" >
                     <a href="javascript:;" onclick="showInfo()" style="text-align: center">list extension binus</a>
                 </div>
                 <!-- sidebar-header  -->
+                @if(Session::get('login'))
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap" style="align-content: center;text-align: center">
-                    @if(!Session::get('login'))
+<!--                     @if(!Session::get('login'))
                     <div class="loginBtn" style="width: 100%" >
                         <a href="/login">
                             <button type="button" class="btn btn-outline-light"><span class="fas fa-user-shield"></span> Login Admin</button>
                         </a>
                     </div>
-                    @endif
-                    @if(Session::get('login'))
+                    @endif -->
                     <div class="user-pic">
                         <img class="img-responsive img-rounded" src="img/{{Session::get("image")}}" onerror="this.src='img/user.jpg';">
                     </div>
@@ -67,8 +70,8 @@
                             </a>
                         </span>
                     </div>
-                    @endif
                 </div>
+                @endif
                 <!-- sidebar-search  -->
                 <div class="sidebar-item sidebar-search">
                     <div>
@@ -86,7 +89,7 @@
                 <div class="sidebar-item sidebar-menu">
                     <ul>
                         <li class="sidebar-dropdown active" style="padding: 0px;">
-                            <a href="javascript:;" onclick="showInfo()">
+                            <a href="javascript:;" onclick="showInfo2()">
                                 <span class="menu-text" style="padding-top:20px;padding-bottom:20px;padding-left: 5px;">Info</span>
                             </a>
                         </li>
@@ -100,7 +103,7 @@
         </nav>
         <!-- page-content  -->
         <main class="page-content pt-2">
-            <div id="toggle-sidebar" onclick="rotateImg();" href="#"><img id="arrowImg" src="img/prev.png"></div>
+            <div id="toggle-sidebar"><img id="arrowImg" src="img/prev.png"></div>
             <div id="overlay" class="overlay"></div>
             <div class="container-fluid p-5 syahdanImage">
                 <div class="row">
@@ -115,7 +118,7 @@
                             <td>
                             <p align="center"><strong>For help and Update, Please Contact</strong></p><br>
 
-                            Operator Syahdan (for Location Syahdan, Anggrek, Kijang, Alam Sutra) , Extention = "0" email = <strong>operator@binus.edu</strong> <br>
+                            Operator Syahdan (for Location Syahdan, Anggrek, Kijang, Alam Sutra) , Extension = "0" email = <strong>operator@binus.edu</strong> <br>
 
                             Operator JWC     (for Location JWC)     , Extention = "0 (for Extension at JWC Only) or 3999" email = <strong>operatorjwc@binus.edu</strong> <br>
 

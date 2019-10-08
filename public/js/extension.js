@@ -54,7 +54,11 @@ function getListExtension(table){
 }
 
 function showInfo(){
-	$(".syahdanImage").show();
+    location.reload();
+}
+
+function showInfo2(){
+    $(".syahdanImage").show();
     $(".table-info").show();
     $(".table-data").html("");
     $(".table-search").html("");
