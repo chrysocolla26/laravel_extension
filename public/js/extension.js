@@ -74,7 +74,7 @@ function showListTab(data){
         strHTML += "<li class='sidebar-dropdown site-tab add-site' style='padding:0;'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")><span style='padding-top:20px;padding-bottom:20px;padding-left:5px;'>Add New Site&nbsp;&nbsp;</span><h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
 
 	for(var i=0;i<data.length;i++)
-		strHTML += "<li class='sidebar-dropdown site-tab' id='"+data[i].TableName+"' style='padding:0;'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text' style='padding-top:20px;padding-bottom:20px;padding-left:5px;'>"+data[i].TabName+"</span></a></li>";
+		strHTML += "<li class='sidebar-dropdown site-tab' id='"+data[i].TableName+"' style='padding:0;'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text' style='padding:10px 0 10px 10px;'>"+data[i].TabName+"</span></a></li>";
 
 	$(".sidebar-menu ul").append(strHTML);
 }

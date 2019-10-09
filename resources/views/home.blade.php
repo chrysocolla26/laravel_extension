@@ -90,7 +90,7 @@
                     <ul>
                         <li class="sidebar-dropdown active" style="padding: 0px;">
                             <a href="javascript:;" onclick="showInfo2()">
-                                <span class="menu-text" style="padding-top:20px;padding-bottom:20px;padding-left: 5px;">Info</span>
+                                <span class="menu-text" style="padding:10px 0 10px 10px;">Info</span>
                             </a>
                         </li>
                     </ul>
