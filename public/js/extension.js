@@ -209,7 +209,7 @@ function showListExtension(data, table){
                 if (data[i].Group != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '">' + data[i].Group + '';
-                    strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    // strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
@@ -219,7 +219,7 @@ function showListExtension(data, table){
                 if (data[i].Unit != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '">' + data[i].Unit + '';
-                    strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    // strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
@@ -241,7 +241,7 @@ function showListExtension(data, table){
                 if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '">' + data[i].Group + '';
-                    strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    // strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
@@ -251,7 +251,7 @@ function showListExtension(data, table){
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '">' + data[i].Unit + '';
-                    strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    // strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
