@@ -505,6 +505,7 @@ body {
 /* Table CSS*/
 .table-data tr td, tr th{
   padding: 5px;
+    font-size: 14px;
 }
 
 a{
