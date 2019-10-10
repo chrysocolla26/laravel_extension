@@ -9,7 +9,7 @@
   .default-theme .sidebar-wrapper .sidebar-item .sidebar-dropdown:first-child {
     border-top: none; }
   .default-theme .sidebar-wrapper .sidebar-item .sidebar-dropdown{
-    border-top: 1px solid #ffffff;
+    border-top: 2px solid #ffffff;
     padding: 18px 0px;
     font-size: 14px;}
   .default-theme .sidebar-wrapper .sidebar-item .sidebar-dropdown:last-child {
