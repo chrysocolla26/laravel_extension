@@ -187,7 +187,6 @@ function showListExtension(data, table){
     if(chkPost)
         strHTML += '<th>Position</th>';
 
-    
     strHTML += '<th>Extension</th>';
 
     if(chkDID)
