@@ -88,7 +88,7 @@
                 <!-- sidebar-menu  -->
                 <div class="sidebar-item sidebar-menu">
                     <ul>
-                        <li class="sidebar-dropdown active info" style="padding: 0px;">
+                        <li class="sidebar-dropdown active" style="padding: 0px;">
                             <a href="javascript:;" onclick="showInfo2()">
                                 <span class="menu-text" style="padding:10px 0 10px 10px;">Info</span>
                             </a>

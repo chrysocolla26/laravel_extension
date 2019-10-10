@@ -532,12 +532,12 @@ body, #modal-action{
 }
 
 .sidebar-menu .active{
-  background: #f8f9fa;
+  background: #f2960b;
   border-radius: 1px;
 }
 
 .sidebar-menu .active span{
-  color: black;
+  color: #ffffff;
 }
 
 .sidebar-menu a:hover>span{
