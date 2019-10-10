@@ -72,8 +72,8 @@ function showListTab(data){
 
     $('.site-tab').remove();
 
-    if(sessionLogin)
-        strHTML += "<li class='sidebar-dropdown site-tab add-site' style='padding:0;'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")><span style='padding:10px 0 10px 10px;'>Add New Site&nbsp;&nbsp;</span><h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
+    // if(sessionLogin)
+    //     strHTML += "<li class='sidebar-dropdown site-tab add-site' style='padding:0;'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")><span style='padding:10px 0 10px 10px;'>Add New Site&nbsp;&nbsp;</span><h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
 
 	for(var i=0;i<data.length;i++) {
 	    if(data[i].TableName!="alam_sutera_main_campus" && data[i].TableName!="bcld" && data[i].TableName!="binus_school_bekasi" && data[i].TableName!="pjj_palembang" && data[i].TableName!="binus_center" && data[i].TableName!="vicon")
