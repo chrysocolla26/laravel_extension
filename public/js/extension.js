@@ -1175,7 +1175,7 @@ function showSearchExtension(name,data) {
 
             if(i==0){
                 if(data[i].Title == data[0].Title && data[i].Title != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#f2960b; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
                 }
                 if(sessionLogin) {
                     if (data[i].Group != "") {
@@ -1200,7 +1200,7 @@ function showSearchExtension(name,data) {
                     }
                 }else{
                     if (data[i].Group != "") {
-                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                     }
                     if (data[i].Unit != "") {
                         strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
@@ -1234,7 +1234,7 @@ function showSearchExtension(name,data) {
                     strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
                     strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
 
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#f2960b; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
 
                     strHTML += '<thead><tr align="center">';
                     strHTML += '<th>Name</th>';
@@ -1261,7 +1261,7 @@ function showSearchExtension(name,data) {
                 if(sessionLogin) {
                     if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
                         strHTML += '<thead><tr scope="col" align="center">';
-                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Group + '';
+                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                         strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
@@ -1281,7 +1281,7 @@ function showSearchExtension(name,data) {
                     }
                 }else{
                     if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
-                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                     }
                     if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
                         strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';

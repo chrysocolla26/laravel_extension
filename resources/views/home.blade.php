@@ -37,7 +37,7 @@
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand" style="margin: 20px">
-                    <img src="{{asset('img/syahdan.png')}}" width="200px">
+                    <img src="{{asset('img/binus_it.png')}}" width="200px">
                 </div>
                 <div class="sidebar-item sidebar-brand" >
                     <a href="javascript:;" onclick="showInfo()" style="text-align: center">list extension binus</a>
@@ -107,7 +107,7 @@
             <div id="overlay" class="overlay"></div>
             <div class="container-fluid p-5 syahdanImage">
                 <div class="row">
-                    <img id="syahdanImage" src="img/syahdan.jpg" class="w-100">
+                    <img id="syahdanImage" src="img/binus_it.jpg" class="w-100">
                 </div>
             </div>
             <div class="table-ext container-fluid p-4" align="center">
