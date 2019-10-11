@@ -9,10 +9,10 @@
     <title>Extension Bina Nusantara</title>
 
     {{--Custom Button--}}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    {{--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">--}}
 
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="{{asset('css/jquery.mCustomScrollbar.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar-themes.css')}}">
@@ -79,7 +79,8 @@
                             <input type="text" class="form-control search-menu" onkeydown="searchExtension(event.keyCode)" placeholder="Search name, division..." >
                             <div class="input-group-append" onclick="searchExtension('13')">
                                 <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+                                    <img src="img/search.png" width="20px">
                                 </span>
                             </div>
                         </div>
@@ -88,7 +89,7 @@
                 <!-- sidebar-menu  -->
                 <div class="sidebar-item sidebar-menu">
                     <ul>
-                        <li class="sidebar-dropdown active" style="padding: 0px;">
+                        <li class="sidebar-dropdown info active" style="padding: 0px;border-top: 1px solid #ffffff;">
                             <a href="javascript:;" onclick="showInfo2()">
                                 <span class="menu-text" style="padding:10px 0 10px 10px;">Info</span>
                             </a>

@@ -57,13 +57,24 @@ function showInfo(){
     location.reload();
 }
 
-function showInfo2(){
+function showInfo2() {
     $(".syahdanImage").show();
     $(".table-info").show();
     $(".table-data").html("");
     $(".table-search").html("");
     $(".button-reorder").html("");
     $(".sidebar-menu li").removeClass("active");
+    $(".sidebar-dropdown info").addClass("active");
+}
+
+function showInfo3(){
+    $(".syahdanImage").show();
+    $(".table-info").show();
+    $(".table-data").html("");
+    $(".table-search").html("");
+    $(".button-reorder").html("");
+    $(".sidebar-menu li").removeClass("active");
+    $(".sidebar-dropdown info").addClass("active");
     $(".info").addClass("active");
 }
 
@@ -86,7 +97,7 @@ function showListTab(data){
 }
 
 function showActionColumn(){
-    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showReorderColumn()'><span class='fas fa-bars'></span> REORDER</button>");
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showReorderColumn()'>REORDER</button>");
     $(".action-head").show();
     $(".reorder-head").hide();
     $(".action-column").show();
@@ -95,7 +106,7 @@ function showActionColumn(){
 }
 
 function showReorderColumn(){
-    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showActionColumn()'><span class='fas fa-users-cog'></span> ACTION</button>");
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showActionColumn()'>ACTION</button>");
     $(".action-head").hide();
     $(".reorder-head").show();
     $(".action-column").hide();
@@ -1095,7 +1106,7 @@ function searchExtension(code){
     if(code == "13") {
         var name = $(".search-menu").val();
         if(name == "" || name.length < 3)
-            showInfo2();
+            showInfo3();
         else {
             $.ajax({
                 type: "GET",
