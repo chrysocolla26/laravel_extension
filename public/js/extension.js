@@ -114,6 +114,10 @@ function showReorderColumn(){
     reorderFlag = true;
 }
 
+function removeActionButton(){
+    $(".button-reorder").html("");
+}
+
 function reorderData(name, id, idSwap, countRow, table, type){
     $.ajax({
         type: "GET",
@@ -224,7 +228,7 @@ function showListExtension(data, table){
                 if (data[i].Group != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
-                    // strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
@@ -256,7 +260,7 @@ function showListExtension(data, table){
                 if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
-                    // strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
+                    strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
@@ -1373,6 +1377,8 @@ function showSearchExtension(name,data) {
         break;
     }
     $(".table-search").append(strHTML);
+    
+    removeActionButton();
 
     // if(sessionLogin) {
     //     if (!reorderFlag)
