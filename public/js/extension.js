@@ -258,6 +258,22 @@ function showListExtension(data, table){
                     strHTML += '</tr></thead>';
                 }
                 if (data[i].Unit != "") {
+                    lastDivision = true;
+
+                    var unitUp = i - countSameUnit;
+
+                    countSameUnit = 1;
+                    for(j=i;j<data.length;j++){
+                        if(j+1 != data.length){
+                            if(data[j].Unit != data[j+1].Unit){
+                                lastDivision = false;
+                                break;
+                            }
+                            else{
+                                countSameUnit++;
+                            }
+                        }
+                    }
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
@@ -265,7 +281,7 @@ function showListExtension(data, table){
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
                     strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit;
-                    strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto"></a></th>';
+                    strHTML += '&nbsp;<a onclick=reorderUnit("","' + (i+1) + '","' + (j+2) + '","' + countSameUnit + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto"></a></th>';
                     strHTML += '</tr></thead>';
                 }
             }else{
