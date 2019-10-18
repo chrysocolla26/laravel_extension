@@ -136,8 +136,28 @@ function reorderData(name, id, idSwap, countRow, table, type){
                 showListExtension(response.data, table);
                 showReorderColumn();
             }
-            else
-                showSearchExtension(name,response.data);
+        }
+    });
+}
+
+function reorderUnit(name, id, idSwap, countRowUnit, table, type){
+    $.ajax({
+        type: "GET",
+        url: "/reorderUpdateUnit",
+        dataType: "json",
+        data: {
+            name: name,
+            id: parseInt(id),
+            idSwap: parseInt(idSwap),
+            countRowUnit: parseInt(countRowUnit),
+            table: table,
+            type: type
+        },
+        success: function(response){
+            if(name == "") {
+                showListExtension(response.data, table);
+                showReorderColumn();
+            }
         }
     });
 }
@@ -147,6 +167,8 @@ function showListExtension(data, table){
     var name = "";
     var rowspan = 1;
     var colspan = 2;
+    var lastDivision = false;
+    var countSameUnit = 1;
     if(sessionLogin)
         colspan++;
     chkGroup = false;
@@ -232,7 +254,7 @@ function showListExtension(data, table){
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '</th>';
                     strHTML += '</tr></thead>';
                 }
                 if (data[i].Unit != "") {
@@ -242,7 +264,8 @@ function showListExtension(data, table){
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit;
+                    strHTML += '&nbsp;<a><img src="img/down-icon.png" width="25px" height="auto"></a></th>';
                     strHTML += '</tr></thead>';
                 }
             }else{
@@ -264,17 +287,36 @@ function showListExtension(data, table){
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '</th>';
                     strHTML += '</tr></thead>';
                 }
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
+                    lastDivision = true;
+
+                    var unitUp = i - countSameUnit;
+
+                    countSameUnit = 1;
+                    for(j=i;j<data.length;j++){
+                        if(j+1 != data.length){
+                            if(data[j].Unit != data[j+1].Unit){
+                                lastDivision = false;
+                                break;
+                            }
+                            else{
+                                countSameUnit++;
+                            }
+                        }
+                    }
                     strHTML += '<thead><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
+                    strHTML += '&nbsp;<a onclick=reorderUnit("","' + (i+1) + '","' + i + '","' + countSameUnit + '","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                    if(lastDivision == false)
+                        strHTML += '<a onclick=reorderUnit("","' + (i+1) + '","' + (j+2) + '","' + countSameUnit + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto"></a></th>';
                     strHTML += '</tr></thead>';
                 }
             }else{
@@ -303,7 +345,7 @@ function showListExtension(data, table){
             // Data rowspan
     		for(var k=i;k<i+rowspan;k++){
                 strHTML += '<tr>';
-                strHTML += '<td>'+data[k].Name+'</td>';
+                strHTML += '<td>'+data[k].id+data[k].Name+'</td>';
 
                 if(chkPost)
                     strHTML += '<td>'+data[k].Position+'</td>';
@@ -371,7 +413,7 @@ function showListExtension(data, table){
     	}else {
             //Data tidak rowspan (Single Data)
             strHTML += '<tr>';
-            strHTML += '<td>'+data[i].Name+'</td>';
+            strHTML += '<td>'+data[i].id+data[i].Name+'</td>';
             if(chkPost)
                 strHTML += '<td>'+data[i].Position+'</td>';
             strHTML += '<td rowspan="'+rowspan+'">'+data[i].Ext+'</td>';
