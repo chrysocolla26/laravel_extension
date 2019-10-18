@@ -58,6 +58,7 @@ function showInfo(){
 }
 
 function showInfo2() {
+    $(".table-height").css('display','none');
     $(".syahdanImage").show();
     $(".table-info").show();
     $(".table-data").html("");
@@ -163,6 +164,7 @@ function reorderUnit(name, id, idSwap, countRowUnit, table, type){
 }
 
 function showListExtension(data, table){
+    $(".table-height").css('display','block');
     var strHTML = "";
     var name = "";
     var rowspan = 1;
@@ -184,7 +186,6 @@ function showListExtension(data, table){
     $(".syahdanImage").hide();
     $(".table-info").hide();
     $(".table-data").html("");
-    $(".table-search").html("");
 
     for(var i=0;i<data.length;i++) {
         if (data[i].Group != "")
@@ -219,10 +220,10 @@ function showListExtension(data, table){
         colspan++;
     if(chkTower)
         colspan++;
+    strHTML += '<table class="table-data table-hover table-sticky" border="1" width="85%">';
+    strHTML += '<thead class="title"><tr scope="col" align="center"><th colspan="'+colspan+'" style="background-color:#f2960b; color:#ffffff;"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
 
-    strHTML = '<thead><tr scope="col" align="center"><th colspan="'+colspan+'" style="background-color:#f2960b; color:#ffffff;"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
-
-    strHTML += '<thead><tr align="center">';
+    strHTML += '<thead class="column-name"><tr align="center">';
     strHTML += '<th>Name</th>';
 
     if(chkPost)
@@ -248,7 +249,7 @@ function showListExtension(data, table){
         if(i==0){
             if(sessionLogin) {
                 if (data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center">';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
@@ -274,7 +275,7 @@ function showListExtension(data, table){
                             }
                         }
                     }
-                    strHTML += '<thead><tr scope="col" align="center">';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
@@ -286,10 +287,10 @@ function showListExtension(data, table){
                 }
             }else{
                 if (data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
                 }
             }
         }
@@ -297,7 +298,7 @@ function showListExtension(data, table){
     	if(i>0){
     	    if(sessionLogin) {
                 if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center">';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
@@ -323,7 +324,7 @@ function showListExtension(data, table){
                             }
                         }
                     }
-                    strHTML += '<thead><tr scope="col" align="center">';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
                     strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
@@ -337,10 +338,10 @@ function showListExtension(data, table){
                 }
             }else{
                 if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
                 }
             }
         }
@@ -486,7 +487,9 @@ function showListExtension(data, table){
     }
 
     strHTML += '</tbody>';
-	$(".table-data").append(strHTML);
+    strHTML += '</table>';
+
+	$(".table-height").append(strHTML);
 
 	if(sessionLogin) {
         if (!reorderFlag)
@@ -1191,6 +1194,7 @@ function searchExtension(code){
 }
 
 function showSearchExtension(name,data) {
+    $(".table-height").css('display','block');
     var strHTML = "";
     var rowspan = 1;
     var colspan = 2;
@@ -1434,7 +1438,7 @@ function showSearchExtension(name,data) {
         strHTML += '</table>';
         break;
     }
-    $(".table-search").append(strHTML);
+    $(".table-height").append(strHTML);
     
     removeActionButton();
 

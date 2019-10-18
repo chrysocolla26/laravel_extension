@@ -131,9 +131,9 @@
                     </thead>
                 </table>
 
-                <table class="table-data table-bordered table-striped table-hover" border="1" width="85%"></table>
+                <div class="table-height" style="display: none;"></div>
 
-                <div class="table-search"></div>
+                <!-- <div class="table-search"></div> -->
 
             </div>
             <div class="button-reorder"></div>

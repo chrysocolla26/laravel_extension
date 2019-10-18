@@ -547,3 +547,31 @@ body, #modal-action{
 .sidebar-menu a:hover span{
   color: black;
 }
+
+.table-sticky { border-collapse: collapse; border: 1px solid black; width: 85%; }
+th, td { padding: 8px 16px; }
+
+.table-sticky>.title>tr>th,
+.table-sticky>.title>tr>td {
+  top: 0px;
+  position: sticky;
+}
+
+.table-sticky>.column-name>tr>th,
+.table-sticky>.column-name>tr>td {
+  background-color: white;
+  top: 55px;
+  position: sticky;
+}
+
+.table-sticky>.group-unit>tr>th,
+.table-sticky>.group-unit>tr>td {
+  top: 85px;
+  position: sticky;
+}
+
+.table-height {
+  height: 1000px;
+  display: block;
+  overflow: scroll;
+}
