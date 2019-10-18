@@ -345,7 +345,7 @@ function showListExtension(data, table){
             // Data rowspan
     		for(var k=i;k<i+rowspan;k++){
                 strHTML += '<tr>';
-                strHTML += '<td>'+data[k].id+data[k].Name+'</td>';
+                strHTML += '<td>'+data[k].Name+'</td>';
 
                 if(chkPost)
                     strHTML += '<td>'+data[k].Position+'</td>';
@@ -413,7 +413,7 @@ function showListExtension(data, table){
     	}else {
             //Data tidak rowspan (Single Data)
             strHTML += '<tr>';
-            strHTML += '<td>'+data[i].id+data[i].Name+'</td>';
+            strHTML += '<td>'+data[i].Name+'</td>';
             if(chkPost)
                 strHTML += '<td>'+data[i].Position+'</td>';
             strHTML += '<td rowspan="'+rowspan+'">'+data[i].Ext+'</td>';
