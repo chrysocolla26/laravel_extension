@@ -26,6 +26,7 @@ Route::get('/addGroupExt','ExtensionController@addGroupExt');
 Route::get('/addSite','ExtensionController@addRowSite');
 
 Route::get('/reorderUpdate','ExtensionController@updateReorder');
+Route::get('/reorderUpdateUnit','ExtensionController@updateReorderUnit');
 
 Route::get('/showSearch','ExtensionController@searchExtension');
 

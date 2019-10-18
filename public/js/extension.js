@@ -57,12 +57,26 @@ function showInfo(){
     location.reload();
 }
 
-function showInfo2(){
+function showInfo2() {
+    $(".table-height").css('display','none');
     $(".syahdanImage").show();
     $(".table-info").show();
     $(".table-data").html("");
     $(".table-search").html("");
     $(".button-reorder").html("");
+    $(".sidebar-menu li").removeClass("active");
+    $(".sidebar-dropdown info").addClass("active");
+}
+
+function showInfo3(){
+    $(".syahdanImage").show();
+    $(".table-info").show();
+    $(".table-data").html("");
+    $(".table-search").html("");
+    $(".button-reorder").html("");
+    $(".sidebar-menu li").removeClass("active");
+    $(".sidebar-dropdown info").addClass("active");
+    $(".info").addClass("active");
 }
 
 function showListTab(data){
@@ -70,17 +84,21 @@ function showListTab(data){
 
     $('.site-tab').remove();
 
-    if(sessionLogin)
-        strHTML += "<li class='sidebar-dropdown site-tab add-site' style='padding:0;'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")><span style='padding:10px 0 10px 10px;'>Add New Site&nbsp;&nbsp;</span><h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
+    // if(sessionLogin)
+    //     strHTML += "<li class='sidebar-dropdown site-tab add-site' style='padding:0;'><a href='javascript:;' onclick=detailAddSite("+data[0].id+")><span style='padding:10px 0 10px 10px;'>Add New Site&nbsp;&nbsp;</span><h5><span class='fas fa-map-marked-alt'></span></h5></a></li>";
 
-	for(var i=0;i<data.length;i++)
-		strHTML += "<li class='sidebar-dropdown site-tab' id='"+data[i].TableName+"' style='padding:0;'><a href='javascript:;' onclick=getListExtension('"+data[i].TableName+"')><span class='menu-text' style='padding:10px 0 10px 10px;'>"+data[i].TabName+"</span></a></li>";
+	for(var i=0;i<data.length;i++) {
+	    if(data[i].TableName!="alam_sutera_main_campus" && data[i].TableName!="bcld" && data[i].TableName!="binus_school_bekasi" && data[i].TableName!="pjj_palembang" && data[i].TableName!="binus_center" && data[i].TableName!="vicon")
+            strHTML += "<li class='sidebar-dropdown site-tab' id='" + data[i].TableName + "' style='padding:0; border-top:none;'><a href='javascript:;' onclick=getListExtension('" + data[i].TableName + "')><span class='menu-text' style='padding:10px 0 10px 10px;'>" + data[i].TabName + "</span></a></li>";
+        else
+	        strHTML += "<li class='sidebar-dropdown site-tab' id='" + data[i].TableName + "' style='padding:0;'><a href='javascript:;' onclick=getListExtension('" + data[i].TableName + "')><span class='menu-text' style='padding:10px 0 10px 10px;'>" + data[i].TabName + "</span></a></li>";
+    }
 
 	$(".sidebar-menu ul").append(strHTML);
 }
 
 function showActionColumn(){
-    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showReorderColumn()'><span class='fas fa-bars'></span> REORDER</button>");
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showReorderColumn()'>REORDER</button>");
     $(".action-head").show();
     $(".reorder-head").hide();
     $(".action-column").show();
@@ -89,12 +107,16 @@ function showActionColumn(){
 }
 
 function showReorderColumn(){
-    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showActionColumn()'><span class='fas fa-users-cog'></span> ACTION</button>");
+    $(".button-reorder").html("<button type='button' class='btn btn-outline-warning' onclick='showActionColumn()'>ACTION</button>");
     $(".action-head").hide();
     $(".reorder-head").show();
     $(".action-column").hide();
     $(".reorder-column").show();
     reorderFlag = true;
+}
+
+function removeActionButton(){
+    $(".button-reorder").html("");
 }
 
 function reorderData(name, id, idSwap, countRow, table, type){
@@ -115,17 +137,40 @@ function reorderData(name, id, idSwap, countRow, table, type){
                 showListExtension(response.data, table);
                 showReorderColumn();
             }
-            else
-                showSearchExtension(name,response.data);
+        }
+    });
+}
+
+function reorderUnit(name, id, idSwap, countRowUnit, table, type){
+    $.ajax({
+        type: "GET",
+        url: "/reorderUpdateUnit",
+        dataType: "json",
+        data: {
+            name: name,
+            id: parseInt(id),
+            idSwap: parseInt(idSwap),
+            countRowUnit: parseInt(countRowUnit),
+            table: table,
+            type: type
+        },
+        success: function(response){
+            if(name == "") {
+                showListExtension(response.data, table);
+                showReorderColumn();
+            }
         }
     });
 }
 
 function showListExtension(data, table){
+    $(".table-height").css('display','block');
     var strHTML = "";
     var name = "";
     var rowspan = 1;
     var colspan = 2;
+    var lastDivision = false;
+    var countSameUnit = 1;
     if(sessionLogin)
         colspan++;
     chkGroup = false;
@@ -141,7 +186,6 @@ function showListExtension(data, table){
     $(".syahdanImage").hide();
     $(".table-info").hide();
     $(".table-data").html("");
-    $(".table-search").html("");
 
     for(var i=0;i<data.length;i++) {
         if (data[i].Group != "")
@@ -176,10 +220,10 @@ function showListExtension(data, table){
         colspan++;
     if(chkTower)
         colspan++;
+    strHTML += '<table class="table-data table-hover table-sticky" border="1" width="85%">';
+    strHTML += '<thead class="title"><tr scope="col" align="center"><th colspan="'+colspan+'" style="background-color:#f2960b; color:#ffffff;"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
 
-    strHTML = '<thead><tr scope="col" align="center"><th colspan="'+colspan+'" style="background-color:#762f8d; color:#ffffff;"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
-
-    strHTML += '<thead><tr align="center">';
+    strHTML += '<thead class="column-name"><tr align="center">';
     strHTML += '<th>Name</th>';
 
     if(chkPost)
@@ -205,31 +249,48 @@ function showListExtension(data, table){
         if(i==0){
             if(sessionLogin) {
                 if (data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center">';
-                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Group + '';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
+                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '</th>';
                     strHTML += '</tr></thead>';
                 }
                 if (data[i].Unit != "") {
-                    strHTML += '<thead><tr scope="col" align="center">';
-                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '';
+                    lastDivision = true;
+
+                    var unitUp = i - countSameUnit;
+
+                    countSameUnit = 1;
+                    for(j=i;j<data.length;j++){
+                        if(j+1 != data.length){
+                            if(data[j].Unit != data[j+1].Unit){
+                                lastDivision = false;
+                                break;
+                            }
+                            else{
+                                countSameUnit++;
+                            }
+                        }
+                    }
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
+                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit;
+                    strHTML += '&nbsp;<a onclick=reorderUnit("","' + (i+1) + '","' + (j+2) + '","' + countSameUnit + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto"></a></th>';
                     strHTML += '</tr></thead>';
                 }
             }else{
                 if (data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
                 }
             }
         }
@@ -237,31 +298,50 @@ function showListExtension(data, table){
     	if(i>0){
     	    if(sessionLogin) {
                 if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center">';
-                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Group + '';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
+                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Group + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '</th>';
                     strHTML += '</tr></thead>';
                 }
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
-                    strHTML += '<thead><tr scope="col" align="center">';
-                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '';
+                    lastDivision = true;
+
+                    var unitUp = i - countSameUnit;
+
+                    countSameUnit = 1;
+                    for(j=i;j<data.length;j++){
+                        if(j+1 != data.length){
+                            if(data[j].Unit != data[j+1].Unit){
+                                lastDivision = false;
+                                break;
+                            }
+                            else{
+                                countSameUnit++;
+                            }
+                        }
+                    }
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center">';
+                    strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                     strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                     strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + table + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                     strHTML += '</th>';
-                    strHTML += '<th class="reorder-column" colspan="' + colspan + '">' + data[i].Unit + '</th>';
+                    strHTML += '<th class="reorder-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
+                    strHTML += '&nbsp;<a onclick=reorderUnit("","' + (i+1) + '","' + i + '","' + countSameUnit + '","' + table + '","up")><img src="img/up-icon.png" width="25px" height="auto"></a>';
+                    if(lastDivision == false)
+                        strHTML += '<a onclick=reorderUnit("","' + (i+1) + '","' + (j+2) + '","' + countSameUnit + '","' + table + '","down")><img src="img/down-icon.png" width="25px" height="auto"></a></th>';
                     strHTML += '</tr></thead>';
                 }
             }else{
                 if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
-                    strHTML += '<thead><tr scope="col" align="center" style="background-color:#762f8d; color:#ffffff;"><th colspan="' + colspan + '"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                 }
                 if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
-                    strHTML += '<thead><tr scope="col" align="center" style="background-color:#762f8d; color:#ffffff;"><th colspan="' + colspan + '">' + data[i].Unit + '</h5></th></tr></thead>';
+                    strHTML += '<thead class="group-unit"><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
                 }
             }
         }
@@ -407,7 +487,9 @@ function showListExtension(data, table){
     }
 
     strHTML += '</tbody>';
-	$(".table-data").append(strHTML);
+    strHTML += '</table>';
+
+	$(".table-height").append(strHTML);
 
 	if(sessionLogin) {
         if (!reorderFlag)
@@ -1088,26 +1170,31 @@ function addGroup(name,id,unit,group,table){
 function searchExtension(code){
     if(code == "13") {
         var name = $(".search-menu").val();
-        $.ajax({
-            type: "GET",
-            url: "/showSearch",
-            dataType: "json",
-            data: {name: name},
-            success: function (response) {
-                if(response.data.length==0){
-                    Swal.fire({
-                        type: 'error',
-                        text: 'Data tidak ditemukan',
-                        confirmButtonColor: '#762F8D',
-                    })
-                }else
-                    showSearchExtension(name, response.data);
-            },
-        });
+        if(name == "" || name.length < 3)
+            showInfo3();
+        else {
+            $.ajax({
+                type: "GET",
+                url: "/showSearch",
+                dataType: "json",
+                data: {name: name},
+                success: function (response) {
+                    if (response.data.length == 0) {
+                        Swal.fire({
+                            type: 'error',
+                            text: 'Data tidak ditemukan',
+                            confirmButtonColor: '#762F8D',
+                        })
+                    } else
+                        showSearchExtension(name, response.data);
+                },
+            });
+        }
     }
 }
 
 function showSearchExtension(name,data) {
+    $(".table-height").css('display','block');
     var strHTML = "";
     var rowspan = 1;
     var colspan = 2;
@@ -1169,12 +1256,12 @@ function showSearchExtension(name,data) {
 
             if(i==0){
                 if(data[i].Title == data[0].Title && data[i].Title != "") {
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#f2960b; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
                 }
                 if(sessionLogin) {
                     if (data[i].Group != "") {
                         strHTML += '<thead><tr scope="col" align="center">';
-                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Group + '';
+                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                         strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
@@ -1184,7 +1271,7 @@ function showSearchExtension(name,data) {
                     }
                     if (data[i].Unit != "") {
                         strHTML += '<thead><tr scope="col" align="center">';
-                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '';
+                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                         strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
@@ -1194,10 +1281,10 @@ function showSearchExtension(name,data) {
                     }
                 }else{
                     if (data[i].Group != "") {
-                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                     }
                     if (data[i].Unit != "") {
-                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
+                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
                     }
                 }
 
@@ -1226,7 +1313,9 @@ function showSearchExtension(name,data) {
             if(i>0){
                 if(data[i].Title != data[i-1].Title && data[i].Title != "") {
                     strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
-                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
+                    strHTML += '<tr><th colspan="' + colspan + '" style="border-left-color:white;border-right-color: white;background-color: white"><h1></h1></th></tr>';
+
+                    strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#f2960b; color:#ffffff;"><h2>' + data[i].Title + '</h2></th></tr></thead><tbody>';
 
                     strHTML += '<thead><tr align="center">';
                     strHTML += '<th>Name</th>';
@@ -1253,7 +1342,7 @@ function showSearchExtension(name,data) {
                 if(sessionLogin) {
                     if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
                         strHTML += '<thead><tr scope="col" align="center">';
-                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Group + '';
+                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;">' + data[i].Group + '';
                         strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"","' + encodeURIComponent(data[i].Group) + '","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
@@ -1263,7 +1352,7 @@ function showSearchExtension(name,data) {
                     }
                     if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
                         strHTML += '<thead><tr scope="col" align="center">';
-                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '';
+                        strHTML += '<th class="action-column" colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '';
                         strHTML += '<a onclick=detailDeleteGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/delete-icon.svg" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailUpdateGroup("' + encodeURIComponent(name) + '","' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/update-icon.png" width="25px" height="auto"></a>';
                         strHTML += '&nbsp;<a onclick=detailAddGroup("' + encodeURIComponent(name) + '",'+data[i].id+',"' + encodeURIComponent(data[i].Unit) + '","","' + data[i].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
@@ -1273,10 +1362,10 @@ function showSearchExtension(name,data) {
                     }
                 }else{
                     if (data[i].Group != data[i - 1].Group && data[i].Group != "") {
-                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
+                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#0090d1; color:#ffffff;"><h5>' + data[i].Group + '</h5></th></tr></thead>';
                     }
                     if (data[i].Unit != data[i - 1].Unit && data[i].Unit != "") {
-                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#762f8d; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
+                        strHTML += '<thead><tr scope="col" align="center"><th colspan="' + colspan + '" style="background-color:#00a8f2; color:#ffffff;">' + data[i].Unit + '</h5></th></tr></thead>';
                     }
                 }
             }
@@ -1316,9 +1405,7 @@ function showSearchExtension(name,data) {
                         strHTML += '&nbsp;<a onclick=detailAddRow("' + encodeURIComponent(name) + '","' + data[k].id + '","' + data[k].TableName + '")><img src="img/add-icon.png" width="25px" height="auto"></a>';
                         strHTML += '</td>'
                     }
-
                     strHTML += '</tr>';
-
                 }
                 i = i+rowspan-1;
                 rowspan = 1;
@@ -1351,7 +1438,9 @@ function showSearchExtension(name,data) {
         strHTML += '</table>';
         break;
     }
-    $(".table-search").append(strHTML);
+    $(".table-height").append(strHTML);
+    
+    removeActionButton();
 
     // if(sessionLogin) {
     //     if (!reorderFlag)

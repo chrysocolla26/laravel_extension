@@ -1,5 +1,5 @@
 .default-theme .sidebar-wrapper {
-  background-color: #762f8d; }
+  background-color: #0090d1; }
   /*background-color: #9e3fbe; }*/
   .default-theme .sidebar-wrapper .sidebar-item {
     border-top: 1px solid #ffffff;
@@ -9,8 +9,9 @@
   .default-theme .sidebar-wrapper .sidebar-item .sidebar-dropdown:first-child {
     border-top: none; }
   .default-theme .sidebar-wrapper .sidebar-item .sidebar-dropdown{
-    border-top: 1px solid #ffffff;
-    padding: 18px 0px }
+    border-top: 2px solid #ffffff;
+    padding: 18px 0px;
+    font-size: 14px;}
   .default-theme .sidebar-wrapper .sidebar-item .sidebar-dropdown:last-child {
     border-bottom: 1px solid #ffffff; }
   .default-theme .sidebar-wrapper .sidebar-search input,

@@ -56,7 +56,7 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
         return response([
             'data' => $data
         ]);
@@ -76,7 +76,7 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
         return response([
 	        'data' => $data
@@ -107,7 +107,7 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
         return response([
             'data' => $data
@@ -136,7 +136,7 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
         return response([
             'data' => $data
@@ -185,7 +185,7 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
         return response([
             'data' => $data
@@ -221,7 +221,7 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
         return response([
             'data' => $data
@@ -278,7 +278,64 @@ class ExtensionController extends Controller
         if(empty($name))
             $data = DB::select('select * from '.$table.' order by id ASC');
         else
-            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+
+        return response([
+            'data' => $data
+        ]);
+    }
+
+    public function updateReorderUnit(){
+        $data = "";
+        $id = (int)$_GET['id'];
+        $countRowUnit = (int)$_GET['countRowUnit'];
+        $idSwap = (int)$_GET['idSwap'];
+        $table = $_GET['table'];
+        $name = $_GET['name'];
+        $type = $_GET['type'];
+
+        $name = urldecode($name);
+
+        if(empty($countRowUnit)) {
+            DB::select('UPDATE '.$table.' SET id=9999 where id=' . $idSwap);
+            DB::select('UPDATE '.$table.' SET id=' . $idSwap . ' where id=' . $id);
+            DB::select('UPDATE '.$table.' set id=' . $id . ' where id=9999');
+        }
+        else{
+            $countSwapRow = 1;
+            $data = DB::select('select * from '.$table.' order by id ASC');
+
+            //Reorder data rowspan ($id and %idSwap become index of data)
+            if($type == "down") {
+                for ($i = $idSwap-1; $i < sizeof($data); $i++) {
+                    if ($i + 1 < sizeof($data)) {
+                        if ($data[$i]->Unit == $data[$i + 1]->Unit)
+                            $countSwapRow++;
+                        else
+                            break;
+                    }
+                }
+                DB::select('UPDATE '.$table.' SET id = id + 999 WHERE id >= '.$data[$id-1]->id.' AND id <= '.$data[$id+$countRowUnit-2]->id.' order by id DESC');
+                DB::select('UPDATE '.$table.' SET id = id - '.$countRowUnit.'  WHERE id >= '.$data[$idSwap-1]->id.' AND id <= '.$data[$idSwap+$countSwapRow-2]->id.' order by id ASC');
+                DB::select('UPDATE '.$table.' SET id = ((id - 999) + '. $countSwapRow .' ) WHERE id >= '. ($data[$id-1]->id + 999).' AND id <= '. ($data[$id+$countRowUnit-2]->id + 999) .' order by id DESC');
+            }
+            else if($type == "up"){
+                for ($i = $idSwap-1; $i > 0; $i--) {
+                    if ($data[$i]->Unit == $data[$i - 1]->Unit)
+                        $countSwapRow++;
+                    else
+                        break;
+                }
+                DB::select('UPDATE ' . $table . ' SET id = id + 999 WHERE id >=' . $data[$id-1]->id . ' AND id <= '. $data[$id+$countRowUnit-2]->id.' order by id DESC');
+                DB::select('UPDATE ' . $table . ' SET id = id + ' . $countRowUnit . ' WHERE id >=' . $data[$idSwap-$countSwapRow]->id . ' AND id <= '. $data[$idSwap-1]->id.' order by id DESC');
+                DB::select('UPDATE ' . $table . ' SET id = ((id - 999) - ' . $countSwapRow . ') WHERE id >=' . ($data[$id-1]->id + 999) . ' AND id <= '. ($data[$id+$countRowUnit-2]->id + 999).' order by id DESC');
+            }
+        }
+
+        if(empty($name))
+            $data = DB::select('select * from '.$table.' order by id ASC');
+        else
+            $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
         return response([
             'data' => $data
@@ -291,7 +348,7 @@ class ExtensionController extends Controller
 
         $name = urldecode($name);
 
-	    $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM alc UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
+	    $data = DB::select('select * from (SELECT * FROM bcld UNION SELECT * FROM ga UNION SELECT * FROM human_capital UNION SELECT * FROM finance UNION SELECT * FROM marketing UNION SELECT * FROM it UNION SELECT * FROM univ UNION SELECT * FROM csm UNION SELECT * FROM binus_square UNION SELECT * FROM bbs_jwc UNION SELECT * FROM binus_center UNION SELECT * FROM binus_school_serpong UNION SELECT * FROM binus_school_simprug UNION SELECT * FROM binus_school_bekasi UNION SELECT * FROM ido UNION SELECT * FROM alam_sutera_main_campus UNION SELECT * FROM binus_bandung UNION SELECT * FROM binus_malang UNION SELECT * FROM pjj_semarang UNION SELECT * FROM pjj_palembang UNION SELECT * FROM binus_bekasi UNION SELECT * FROM vicon UNION SELECT * FROM binus_fx_bnsd UNION SELECT * FROM base_aso UNION SELECT * FROM binus_creates) as t WHERE Name LIKE "%'.$name.'%" OR Ext LIKE "%'.$name.'%" OR `Group` LIKE "%'.$name.'%" OR Unit LIKE "%'.$name.'%" OR Position LIKE "%'.$name.'%" OR Title LIKE "%'.$name.'%" order by id asc');
 
 	    return response([
 	        'data' => $data,
