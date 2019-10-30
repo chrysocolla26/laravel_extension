@@ -8,12 +8,6 @@
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- load stylesheet -->
-    {{--<link rel="stylesheet" href="{{asset('css/main_new.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/style-edu.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/login-edu.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/custom.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/login.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/style.css')}}">--}}
     <script type="text/javascript" src="{{asset('js/sweetalert2.all.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/main_new.css">
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/style-edu.css">
