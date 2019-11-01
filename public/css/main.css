@@ -549,7 +549,8 @@ body, #modal-action{
 }
 
 .table-sticky { border-collapse: collapse; border: 1px solid black; width: 85%; }
-th, td { padding: 8px 16px; }
+
+th,tr , td { padding: 8px 16px; border: 1px solid black;}
 
 .table-sticky>.title>tr>th,
 .table-sticky>.title>tr>td {

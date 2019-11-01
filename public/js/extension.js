@@ -220,28 +220,33 @@ function showListExtension(data, table){
         colspan++;
     if(chkTower)
         colspan++;
+
     strHTML += '<table class="table-data table-hover table-sticky" border="1" width="85%">';
-    strHTML += '<thead class="title"><tr scope="col" align="center"><th colspan="'+colspan+'" style="background-color:#f2960b; color:#ffffff;"><h2>'+data[0].Title+'</h2></th></tr></thead><tbody>';
+    strHTML += '<thead class="title">';
+    strHTML += '<tr scope="col" align="center"><th colspan="'+colspan+'" style="background-color:#f2960b; color:#ffffff;"><h2>'+data[0].Title+'</h2></th></tr>';
+    strHTML += '</thead>';
+
+    strHTML += '<tbody>';
 
     strHTML += '<thead class="column-name"><tr align="center">';
-    strHTML += '<th>Name</th>';
+    strHTML += '<td>Name</td>';
 
     if(chkPost)
-        strHTML += '<th>Position</th>';
+        strHTML += '<td>Position</td>';
 
-    strHTML += '<th>Extension</th>';
+    strHTML += '<td>Extension</td>';
 
     if(chkDID)
-        strHTML += '<th>DID</th>';
+        strHTML += '<td>DID</td>';
     if(chkPhone)
-        strHTML += '<th>Phone</th>';
+        strHTML += '<td>Phone</td>';
     if(chkFloor)
-        strHTML += '<th>Floor</th>';
+        strHTML += '<td>Floor</td>';
     if(chkTower)
-        strHTML += '<th>Tower</th>';
+        strHTML += '<td>Tower</td>';
     if(sessionLogin) {
-        strHTML += '<th class="action-head" width="100px">Action</th>';
-        strHTML += '<th class="reorder-head" width="70px" style="display: none; padding: 0; margin: 0;">Reorder</th>';
+        strHTML += '<td class="action-head" width="100px">Action</td>';
+        strHTML += '<td class="reorder-head" width="70px" style="display: none; padding: 0; margin: 0;">Reorder</td>';
     }
     strHTML += '</tr></thead>';
 

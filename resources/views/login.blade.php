@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- load stylesheet -->
+    <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('js/sweetalert2.all.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/main_new.css">
     <link rel="stylesheet" type="text/css" href="https://backaccess.apps.binus.edu/wifi/assets/css/style-edu.css">
