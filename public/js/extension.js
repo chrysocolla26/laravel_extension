@@ -69,6 +69,7 @@ function showInfo2() {
 }
 
 function showInfo3(){
+    $(".table-height").css('display','none');
     $(".syahdanImage").show();
     $(".table-info").show();
     $(".table-data").html("");
