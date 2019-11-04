@@ -66,7 +66,6 @@ function showInfo2() {
     $(".button-reorder").html("");
     $(".sidebar-menu li").removeClass("active");
     $(".sidebar-dropdown info").addClass("active");
-    $(".table-height").remove();
 }
 
 function showInfo3(){
@@ -78,7 +77,6 @@ function showInfo3(){
     $(".sidebar-menu li").removeClass("active");
     $(".sidebar-dropdown info").addClass("active");
     $(".info").addClass("active");
-    $(".table-height").remove();
 }
 
 function showListTab(data){
