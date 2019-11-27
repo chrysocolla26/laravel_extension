@@ -838,11 +838,11 @@ function detailAddRow(name, id, table){
             strBody += '<strong><h6>New Data:</h6></strong><br>';
             strBody += '<strong>Name : </strong><input type="text" name="name" class="form-control" value="" required><br>';
             strBody += '<strong>Extension : </strong><input type="text" min="1" name="extension" class="form-control" value="' + singleData.Ext + '" required><br>';
-            if (singleData.Group != "" || chkGroup)
+            // if (singleData.Group != "" || chkGroup)
                 strBody += '<strong>Group : </strong><input type="text" name="group" class="form-control" value="' + singleData.Group + '" required><br>';
-            if (singleData.Unit != "" || chkUnit)
-                strBody += '<strong>Unit : </strong><input type="text" name="unit" class="form-control" value="'+singleData.Unit+'" required><br>';
-            if (singleData.Position != "" || chkPost)
+            // if (singleData.Unit != "" || chkUnit)
+                strBody += '<strong>Unit : </strong><input type="text" name="unit" class="form-control" value="" required><br>';
+            // if (singleData.Position != "" || chkPost)
                 strBody += '<strong>Position : </strong><input type="text" name="position" class="form-control" value="'+singleData.Position+'" required><br>';
             if (singleData.DID != "" || chkDID)
                 strBody += '<strong>DID : </strong><input type="number" min="1" name="did" class="form-control" value="'+singleData.DID+'"><br>';
