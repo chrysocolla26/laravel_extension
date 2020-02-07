@@ -841,7 +841,7 @@ function detailAddRow(name, id, table){
             // if (singleData.Group != "" || chkGroup)
                 strBody += '<strong>Group : </strong><input type="text" name="group" class="form-control" value="' + singleData.Group + '" required><br>';
             // if (singleData.Unit != "" || chkUnit)
-                strBody += '<strong>Unit : </strong><input type="text" name="unit" class="form-control" value="" required><br>';
+                strBody += '<strong>Unit : </strong><input type="text" name="unit" class="form-control" value="' + singleData.Unit + '" required><br>';
             // if (singleData.Position != "" || chkPost)
                 strBody += '<strong>Position : </strong><input type="text" name="position" class="form-control" value="'+singleData.Position+'" required><br>';
             if (singleData.DID != "" || chkDID)
